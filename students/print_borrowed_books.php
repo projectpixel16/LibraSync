@@ -75,7 +75,7 @@ function printPage() {
 							$return_query= mysqli_query($con,"SELECT * from borrow_book 
 							LEFT JOIN book ON borrow_book.book_id = book.book_id 
 							LEFT JOIN user ON borrow_book.user_id = user.user_id 
-							where borrow_book.borrowed_status = 'borrowed'  order by borrow_book.borrow_book_id DESC") or die (mysqli_error());
+							where borrow_book.user_id='$id_session'  order by borrow_book.borrow_book_id DESC") or die (mysqli_error());
 								$return_count = mysqli_num_rows($return_query);
 							// $count_penalty = mysqli_query($con,"SELECT sum(book_penalty) FROM return_book ")or die(mysqli_error());
 							// $count_penalty_row = mysqli_fetch_array($count_penalty);
@@ -160,8 +160,8 @@ function printPage() {
 <br />
 <br />
 							<?php
-								include('include/dbcon.php');
-								$user_query=mysqli_query($con,"select * from admin where admin_id='$id_session'")or die(mysqli_error());
+								include('../include/dbcon.php');
+								$user_query=mysqli_query($con,"select * from user where user_id='$id_session'")or die(mysqli_error());
 								$row=mysqli_fetch_array($user_query); {
 							?>        <h2><i class="glyphicon glyphicon-user"></i> <?php echo '<span style="color:blue; font-size:15px;">Prepared by:'."<br /><br /> ".$row['firstname']." ".$row['lastname']." ".'</span>';?></h2>
 								<?php } ?>

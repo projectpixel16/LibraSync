@@ -10,19 +10,19 @@
                     <div class="clearfix"></div>
 
                     <!-- menu prile quick info -->
-					<a href="admin_profile.php">
+					<!-- <a href="admin_profile.php"> -->
                     <div class="profile">
                         <?php
                             include('../include/dbcon.php');
-                            $user_query=mysqli_query($con,"select *  from admin where admin_id='$id_session'")or die(mysqli_error());
+                            $user_query=mysqli_query($con,"select *  from user where user_id='$id_session'")or die(mysqli_error());
                             $row=mysqli_fetch_array($user_query); {
                         ?>
                         <div class="profile_pic">
-									<?php if($row['admin_image'] != ""): ?>
+									<!-- <?php if($row['admin_image'] != ""): ?>
 									<img src="../upload/<?php echo $row['admin_image']; ?>" style="height:65px; width:75px;" class="img-thumbnail profile_img">
-									<?php else: ?>
+									<?php else: ?> -->
 									<img src="../images/user.png" style="height:65px; width:75px;" class="img-circle profile_img">
-									<?php endif; ?>	
+									<!-- <?php endif; ?>	 -->
                         </div>
 
                         <div class="profile_info">
@@ -31,7 +31,7 @@
                         </div>
                     <?php } ?>
                     </div>
-					</a>
+					<!-- </a> -->
                     <!-- /menu prile quick info -->
 
                     <br />
@@ -43,7 +43,10 @@
 							<div class="separator"></div>
                             <ul class="nav side-menu">
                                 <li>
-									<a href="borrow.php"><i class="fa fa-edit"></i> Borrow</a>
+									<a href="borrow_book.php?school_number=<?php echo $row['school_number']?>"><i class="fa fa-edit"></i> Borrow</a>
+                                </li>
+                                <li>
+									<a href="reserve_book.php?school_number=<?php echo $row['school_number']?>"><i class="fa fa-edit"></i> Reserve</a>
                                 </li>
                                 <li>
 									<a href="borrowed.php"><i class="fa fa-book"></i> Borrowed Books</a>
@@ -51,9 +54,9 @@
                                 <li>
 									<a href="returned_book.php"><i class="fa fa-book"></i> Returned Books</a>
                                 </li>
-                                <li>
+                                <!-- <li>
 									<a href="settings.php"><i class= "fa fa-cog"></i> Settings</a>
-                                </li>
+                                </li> -->
                                 <!-- <li>
 									<a href="report.php"><i class= "fa fa-file"></i> Reports</a>
                                 </li>

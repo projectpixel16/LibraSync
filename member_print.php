@@ -81,8 +81,8 @@ function printPage() {
 									<th>Gender</th>
 									<th>Address</th>
 									<th>Type</th>
-									<th>Level</th>
-									<th>Section</th>
+									<!-- <th>Level</th>
+									<th>Section</th> -->
 									<th>Status</th>
 								</tr>
 								</tr>
@@ -98,8 +98,8 @@ function printPage() {
 								<td style="text-align:center;"><?php echo $row['gender']; ?></td> 
 								<td style="text-align:center;"><?php echo $row['address']; ?></td> 
 								<td style="text-align:center;"><?php echo $row['type']; ?></td> 
-								<td style="text-align:center;"><?php echo $row['level']; ?></td> 
-								<td style="text-align:center;"><?php echo $row['section']; ?></td> 
+								<!-- <td style="text-align:center;"><?php echo $row['level']; ?></td> 
+								<td style="text-align:center;"><?php echo $row['section']; ?></td>  -->
 								<td style="text-align:center;"><?php echo $row['status']; ?></td>
 							</tr>
 							<tr>

@@ -1,5 +1,5 @@
 <?php
-include('include/dbcon.php');
+include('../include/dbcon.php');
 include('session.php');
 
 $logout_query=mysqli_query($con,"select * from admin where admin_id=$id_session");

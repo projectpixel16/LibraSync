@@ -78,7 +78,7 @@ function printPage() {
 									<th>Barcode Image</th>
 									<th>School ID</th>
 									<th>Full Name</th>
-									<th>Level</th>
+									<!-- <th>Level</th> -->
 								</tr>
 						  </thead>   
 						  <tbody>
@@ -87,10 +87,13 @@ function printPage() {
 							$id=$row['user_id'];
 ?>
 							<tr>
-								<td style="text-align:center;"><?php	echo "<img src = 'BCG/html/image.php?filetype=PNG&dpi=72&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&text=".$row['school_number']."&thickness=50&start=NULL&code=BCGcode128' />";?></td>
+								<!-- <td style="text-align:center;"><?php	echo "<img src = 'BCG/html/image.php?filetype=PNG&dpi=72&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&text=".$row['school_number']."&thickness=50&start=NULL&code=BCGcode128' />";?></td> -->
+								<td style="text-align:center;">
+									<img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=<?php echo $row['school_number']; ?>" alt="QR Code">
+								</td>
 								<td style="text-align:center;"><?php echo $row['school_number']; ?></td> 
 								<td style="text-align:center;"><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></td>
-								<td style="text-align:center;"><?php echo $row['level']; ?></td>
+								<!-- <td style="text-align:center;"><?php echo $row['level']; ?></td> -->
 							</tr>
 							<tr>
 								<td></td>

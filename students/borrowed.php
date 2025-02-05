@@ -24,7 +24,7 @@
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
 							<a href="print_borrowed_books.php" target="_blank" style="background:none;">
-							<button class="btn btn-danger"><i class="fa fa-print"></i> Print</button>
+							<!-- <button class="btn btn-danger"><i class="fa fa-print"></i> Print</button> -->
 							</a>
 							</li>
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -91,7 +91,7 @@
 							$return_query= mysqli_query($con,"SELECT * from borrow_book 
 							LEFT JOIN book ON borrow_book.book_id = book.book_id 
 							LEFT JOIN user ON borrow_book.user_id = user.user_id 
-							where borrow_book.borrowed_status = 'borrowed' $where order by borrow_book.borrow_book_id DESC") or die (mysqli_error());
+							where borrow_book.user_id='$id_session' $where order by borrow_book.borrow_book_id DESC") or die (mysqli_error());
 								$return_count = mysqli_num_rows($return_query);
 								
 							// $count_penalty = mysqli_query($con,"SELECT sum(book_penalty) FROM return_book ")or die(mysqli_error());

@@ -16,7 +16,7 @@
 							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Members List</button>
 							</a>
 							<a href="print_barcode.php" target="_blank" style="background:none;">
-							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Members Barcode</button>
+							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Members QR Code</button>
 							</a>
 							<br />
 							<br />

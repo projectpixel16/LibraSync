@@ -90,8 +90,8 @@ function printPage() {
 								<tr>
 									<th>Barcode</th>
 									<th>Borrower Name</th>
-									<th>Level</th>
-									<th>Section</th>
+									<!-- <th>Level</th>
+									<th>Section</th> -->
 									<th>Title</th>
 							<!---		<th>Author</th>
 									<th>ISBN</th>	-->
@@ -110,8 +110,8 @@ function printPage() {
 							<tr>
 								<td style="text-align:center;"><?php echo $return_row['book_barcode']; ?></td>
 								<td style="text-transform: capitalize; text-align:center;"><?php echo $return_row['firstname']." ".$return_row['middlename']." ".$return_row['lastname']; ?></td>
-								<td style="text-transform: capitalize; text-align:center;"><?php echo $return_row['level']; ?></td>
-								<td style="text-transform: capitalize; text-align:center;"><?php echo $return_row['section']; ?></td>
+								<!-- <td style="text-transform: capitalize; text-align:center;"><?php echo $return_row['level']; ?></td>
+								<td style="text-transform: capitalize; text-align:center;"><?php echo $return_row['section']; ?></td> -->
 								<td style="text-transform: capitalize; text-align:center;"><?php echo $return_row['book_title']; ?></td>
 							<!---	<td style="text-transform: capitalize"><?php // echo $return_row['author']; ?></td>
 								<td><?php // echo $return_row['isbn']; ?></td>	-->

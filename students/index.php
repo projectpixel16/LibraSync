@@ -12,17 +12,17 @@
 
     <!-- Bootstrap core CSS -->
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="../fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
 
     <!-- Custom styling plus plugins -->
-    <link href="css/custom.css" rel="stylesheet">
-    <link href="css/icheck/flat/green.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/icheck/flat/green.css" rel="stylesheet">
 
 
-    <script src="js/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 
 <style>
 .blink_text {
@@ -75,7 +75,7 @@
                     <form action="" method="post">
                         <h1>Login Form</h1>
                         <div>
-                            <input type="text" class="form-control" name="username" placeholder="Username" autofocus='autofocus' required />
+                            <input type="text" class="form-control" name="username" placeholder="ID Number" autofocus='autofocus' required />
                         </div>
                         <div>
                             <input type="password" class="form-control" name="password" placeholder="Password" required />
@@ -96,20 +96,20 @@
                         </div>
                     </form>
 <?php
-include('include/dbcon.php');
+include('../include/dbcon.php');
 
 if (isset($_POST['login'])){
 
 $username=$_POST['username'];
 $password=$_POST['password'];
 
-$login_query=mysqli_query($con,"select * from admin where username='$username' and password='$password'");
+$login_query=mysqli_query($con,"select * from   user where school_number='$username' and password='$password'");
 $count=mysqli_num_rows($login_query);
 $row=mysqli_fetch_array($login_query);
 
 if ($count > 0){
 session_start();
-$_SESSION['id']=$row['admin_id'];
+$_SESSION['id']=$row['user_id'];
 
 echo "<script>window.location='home.php'</script>";
 }else{ ?>

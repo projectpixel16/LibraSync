@@ -10,17 +10,18 @@
                         <ul class="nav navbar-nav navbar-right">
                             <?php
                                 include('../include/dbcon.php');
-                                $user_query=mysqli_query($con,"select * from admin where admin_id='$id_session'")or die(mysqli_error());
+                                $user_query=mysqli_query($con,"select * from user where user_id='$id_session'")or die(mysqli_error());
                                 $row=mysqli_fetch_array($user_query); {
                             ?>
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     
-									<?php if($row['admin_image'] != ""): ?>
+									<!-- <?php if($row['admin_image'] != ""): ?>
 									<img src="../upload/<?php echo $row['admin_image']; ?>">
-									<?php else: ?>
+									<?php else: ?> -->
 									<img src="../images/user.png">
-									<?php endif; ?>	<?php echo $row['firstname']; ?>
+									<!-- <?php endif; ?>	 -->
+                                    <?php echo $row['firstname']; ?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">

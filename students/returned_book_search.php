@@ -17,7 +17,7 @@
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
 							<a href="returned_book_print.php" target="_blank" style="background:none;">
-							<button name="print" type="submit" class="btn btn-danger"><i class="fa fa-print"></i> Print</button>
+							<!-- <button name="print" type="submit" class="btn btn-danger"><i class="fa fa-print"></i> Print</button> -->
 							</a>
 							</li>
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>

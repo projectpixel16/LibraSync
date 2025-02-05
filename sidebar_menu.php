@@ -64,9 +64,6 @@
 									<a href="admin.php"><i class="fa fa-user"></i> Admin</a>
                                 </li>
 							<?php // } ?>
-                                <!-- <li>
-									<a href="user_log_in.php"><i class="fa fa-users"></i> Members Attendance</a>
-                                </li> -->
                             </ul>
                         </div>
                         <div class="menu_section">
@@ -88,12 +85,6 @@
                                 <li>
 									<a href="report.php"><i class= "fa fa-file"></i> Reports</a>
                                 </li>
-                                <!-- <li>
-									<a href="about_us.php"><i class= "fa fa-info"></i> About Us</a>
-                                </li> -->
-                               <!--- <li>
-									<a href="activity_log.php"><i class="fa fa-history"></i> Activity Log</a>
-                                </li>-->
                             </ul>
                         </div>
 
