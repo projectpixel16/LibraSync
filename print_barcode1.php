@@ -1,4 +1,6 @@
-<?php include ('include/dbcon.php');
+<?php 
+include('session.php');
+include ('include/dbcon.php');
 
 ?>
 <html>
@@ -112,7 +114,7 @@ function printPage() {
 <br />
 							<?php
 								include('include/dbcon.php');
-								include('session.php');
+								// include('session.php');
 								$user_query=mysqli_query($con,"select * from admin where admin_id='$id_session'")or die(mysqli_error());
 								$row=mysqli_fetch_array($user_query); {
 							?>        <h2><i class="glyphicon glyphicon-user"></i> <?php echo '<span style="color:blue; font-size:15px;">Prepared by:'."<br /><br /> ".$row['firstname']." ".$row['lastname']." ".'</span>';?></h2>

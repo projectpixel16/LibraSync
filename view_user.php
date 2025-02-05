@@ -50,7 +50,7 @@
 									<th>Gender</th>
 									<th>Address</th>
 									<th>Type</th>
-									<th>Level</th>
+									<!-- <th>Level</th> -->
 									<th>Status</th>
 									<th>User Added</th>
 								</tr>
@@ -76,7 +76,7 @@
 								<td><?php echo $row['gender']; ?></td> 
 								<td><?php echo $row['address']; ?></td> 
 								<td><?php echo $row['type']; ?></td> 
-								<td><?php echo $row['level']; ?></td> 
+								<!-- <td><?php echo $row['level']; ?></td>  -->
 								<td><?php echo $row['status']; ?></td> 
 								<td><?php echo date("M d, Y h:m:s a", strtotime($row['user_added'])); ?></td>
 							</tr>

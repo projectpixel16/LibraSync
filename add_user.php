@@ -96,7 +96,7 @@
                                         </select>
                                     </div>
                                     </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
 									<label class="control-label col-md-4" for="last-name">Level <span class="required" style="color:red;">*</span>
 									</label>
 									<div class="col-md-4">
@@ -107,15 +107,15 @@
                                             <option value="Grade 10">Grade 10</option>
                                             <option value="Faculty">Faculty</option>
                                         </select>
-                                </div>
+                                </div> -->
                                     </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">Section <span class="required" style="color:red;">*</span>
                                     </label>
                                     <div class="col-md-3">
                                         <input type="text" name="section" placeholder="Section....." id="first-name2" required="required" class="form-control col-md-7 col-xs-12">
                                     </div>
-                                </div>
+                                </div> -->
                         <!---        <div class="form-group">
                                     <label class="control-label col-md-4" for="last-name">User Image <span class="required">*</span>
                                     </label>
@@ -164,8 +164,8 @@
 									$gender = $_POST['gender'];
 									$address = $_POST['address'];
 									$type = $_POST['type'];
-									$level = $_POST['level'];
-									$section = $_POST['section'];
+									// $level = $_POST['level'];
+									// $section = $_POST['section'];
 					
 					$result=mysqli_query($con,"select * from user WHERE school_number='$school_number' ") or die (mysqli_error());
 					$row=mysqli_num_rows($result);
@@ -175,8 +175,8 @@
 					}
 					else
 					{		
-						mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, type, level, section, status, user_added)
-						values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', '$type', '$level', '$section', 'Active', NOW())")or die(mysqli_error());
+						mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, type, status, user_added)
+						values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', '$type', 'Active', NOW())")or die(mysqli_error());
 						echo "<script>alert('User successfully added!'); window.location='user.php'</script>";
 					}
 			//						}

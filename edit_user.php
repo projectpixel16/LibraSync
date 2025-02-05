@@ -113,13 +113,13 @@ $row=mysqli_fetch_array($query);
 									</label>
 									<div class="col-md-4">
                                         <select name="type" class="select2_single form-control" tabindex="-1" >
-                                            <option value="<?php echo $row['type']; ?>"><?php echo $row['type']; ?></option>
-                                            <option value="Student">Student</option>
-                                            <option value="Teacher">Teacher</option>
+                                            <!-- <option value="<?php echo $row['type']; ?>"><?php echo $row['type']; ?></option> -->
+                                            <option value="Student" <?php echo ($row['type']=='Student') ? 'selected' : ''?>>Student</option>
+                                            <option value="Teacher" <?php echo ($row['type']=='Teacher') ? 'selected' : ''?>>Teacher</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
 									<label class="control-label col-md-4" for="last-name">Level
 									</label>
 									<div class="col-md-4">
@@ -132,14 +132,14 @@ $row=mysqli_fetch_array($query);
                                             <option value="Faculty">Faculty</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div> -->
+                                <!-- <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">Section
                                     </label>
                                     <div class="col-md-3">
                                         <input type="text" name="section" value="<?php echo $row['section']; ?>" placeholder="Section....." id="first-name2" required="required" class="form-control col-md-7 col-xs-12">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -194,12 +194,12 @@ $contact = $_POST['contact'];
 $gender = $_POST['gender'];
 $address = $_POST['address'];
 $type = $_POST['type'];
-$level = $_POST['level'];
-$section = $_POST['section'];
+// $level = $_POST['level'];
+// $section = $_POST['section'];
 
 {		
 mysqli_query($con," UPDATE user SET school_number='$school_number', firstname='$firstname', middlename='$middlename', lastname='$lastname', contact='$contact', 
-gender='$gender', address='$address', type='$type', level='$level', section='$section' WHERE user_id = '$id' ")or die(mysqli_error());
+gender='$gender', address='$address', type='$type' WHERE user_id = '$id' ")or die(mysqli_error());
 echo "<script>alert('Successfully Updated User Info!'); window.location='user.php'</script>";
 }
 

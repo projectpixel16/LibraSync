@@ -28,11 +28,11 @@
 							<button class="btn btn-primary btn-outline"><i class="fa fa-plus"></i> Add Member</button>
 							</a>
 							</li>
-                            <li>
+                            <!-- <li>
 							<a href="import_members.php" style="background:none;">
 							<button class="btn btn-success btn-outline"><i class="fa fa-upload"></i> Import Members</button>
 							</a>
-							</li>
+							</li> -->
                         <!---    <li>
 							<a href="update_members_status.php" style="background:none;">
 							<button class="btn btn-danger btn-outline"><i class="fa fa-cog fa-spin"></i> Activate All Members</button>
@@ -66,8 +66,8 @@
 									<th>School ID</th>
 									<th>Member Full Name</th>
 									<th>Type</th>
-									<th>Level</th>
-									<th>Section</th>
+									<!-- <th>Level</th>
+									<th>Section</th> -->
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -90,8 +90,8 @@
 								<td><a target="_blank" href="print_barcode_individual.php?code=<?php echo $row['school_number']; ?>"><?php echo $row['school_number']; ?></a></td> 
 								<td><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></td> 
 								<td><?php echo $row['type']; ?></td> 
-								<td><?php echo $row['level']; ?></td> 
-								<td><?php echo $row['section']; ?></td> 
+								<!-- <td><?php echo $row['level']; ?></td> 
+								<td><?php echo $row['section']; ?></td>  -->
 								<td><?php echo $row['status']; ?></td> 
 								<td>
 									<a class="btn btn-primary" for="ViewAdmin" href="view_user.php<?php echo '?user_id='.$id; ?>">
