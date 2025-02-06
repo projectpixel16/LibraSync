@@ -62,7 +62,7 @@ function printPage() {
 				<center><h5 style = "font-style:Calibri; margin-top:-14px;"></h5> Rafael M. Salas Memorial Library</center>
 			
 <button type="submit" id="print" onclick="printPage()">Print</button>	
-			<p style = "margin-left:30px; margin-top:50px; font-size:14pt; font-weight:bold;">Members Barcode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			<p style = "margin-left:30px; margin-top:50px; font-size:14pt; font-weight:bold;">Members QR Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <div align="right">
 		<b style="color:blue;">Date Prepared:</b>
 		<?php include('currentdate.php'); ?>
@@ -75,7 +75,7 @@ function printPage() {
 						<table class="table">
 						  <thead>
 								<tr>
-									<th>Barcode Image</th>
+									<th>QR Code Image</th>
 									<th>School ID</th>
 									<th>Full Name</th>
 									<!-- <th>Level</th> -->
