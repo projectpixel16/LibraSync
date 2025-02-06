@@ -1,4 +1,5 @@
 <?php include ('../include/dbcon.php');
+include('session.php');
 
 $code = $_GET['code'];
 							$result1= mysqli_query($con,"select * from book where book_barcode = '$code' ") or die (mysqli_error());
@@ -73,15 +74,14 @@ function printPage() {
 		<br/>
 		<br/>
 		<div>
-			<?php echo "<img src = 'BCG/html/image.php?filetype=PNG&dpi=72&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&text=".$code1."&thickness=50&start=NULL&code=BCGcode128' />";?>
+			<?php echo "<img src = '../BCG/html/image.php?filetype=PNG&dpi=72&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&text=".$code1."&thickness=50&start=NULL&code=BCGcode128' />";?>
 			<h3><?php echo $code2; ?></h3>
 		</div>
 <br />
 <br />
 							<?php
-								include('include/dbcon.php');
-								include('session.php');
-								$user_query=mysqli_query($con,"select * from admin where admin_id='$id_session'")or die(mysqli_error());
+								include('../include/dbcon.php');
+								$user_query=mysqli_query($con,"select * from user where user_id='$id_session'")or die(mysqli_error());
 								$row=mysqli_fetch_array($user_query); {
 							?>        <h2><i class="glyphicon glyphicon-user"></i> <?php echo '<span style="color:blue; font-size:15px;">Prepared by:'."<br /><br /> ".$row['firstname']." ".$row['lastname']." ".'</span>';?></h2>
 								<?php } ?>

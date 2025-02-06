@@ -88,10 +88,10 @@
 								$where = " and (date(borrow_book.date_borrowed) between '".date("Y-m-d",strtotime($_GET['datefrom']))."' and '".date("Y-m-d",strtotime($_GET['dateto']))."' ) ";
 							}
 							
-							$return_query= mysqli_query($con,"SELECT * from borrow_book 
+							$return_query= mysqli_query($con,"SELECT borrow_book.borrow_book_id,borrow_book.user_id,borrow_book.book_id,borrow_book.book_penalty,borrow_book.due_date,borrow_book.date_borrowed,borrow_book.status,book.book_barcode,book.book_title,user.firstname,user.lastname from borrow_book 
 							LEFT JOIN book ON borrow_book.book_id = book.book_id 
 							LEFT JOIN user ON borrow_book.user_id = user.user_id 
-							where borrow_book.borrowed_status = 'borrowed' $where order by borrow_book.borrow_book_id DESC") or die (mysqli_error());
+							where (borrow_book.borrowed_status = 'borrowed' OR borrow_book.borrowed_status = 'borrow')  $where order by borrow_book.date_borrowed DESC") or die (mysqli_error());
 								$return_count = mysqli_num_rows($return_query);
 								
 							// $count_penalty = mysqli_query($con,"SELECT sum(book_penalty) FROM return_book ")or die(mysqli_error());
@@ -99,11 +99,9 @@
 							
 							?>
 							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
-								
                                 <!-- <div class="pull-left">
                                     <div class="span"><div class="alert alert-info"><i class="icon-credit-card icon-large"></i>&nbsp;Total Amount of Penalty:&nbsp;<?php echo "Php ".$count_penalty_row['sum(book_penalty)'].".00"; ?></div></div>
                                 </div> -->
-								
 							<thead>
 								<tr>
 									<th>Barcode</th>
@@ -113,15 +111,20 @@
 									<th>ISBN</th>	-->
 									<th>Date Borrowed</th>
 									<th>Due Date</th>
+									<th>Action</th>
 									<!-- <th>Date Returned</th> -->
 									<!-- <th>Penalty</th> -->
 								</tr>
 							</thead>
+							
 							<tbody>
 <?php
 							while ($return_row= mysqli_fetch_array ($return_query) ){
 							$id=$return_row['borrow_book_id'];
+							$user_id=$return_row['user_id'];
+							$book_id=$return_row['book_id'];
 ?>
+				
 							<tr>
 								<td><?php echo $return_row['book_barcode']; ?></td>
 								<td style="text-transform: capitalize"><?php echo $return_row['firstname']." ".$return_row['lastname']; ?></td>
@@ -131,28 +134,113 @@
 								<td><?php echo date("M d, Y h:m:s a",strtotime($return_row['date_borrowed'])); ?></td>
 								<?php
 								 if ($return_row['book_penalty'] != 'No Penalty'){
-									 echo "<td class='' style='width:100px;'>".date("M d, Y h:m:s a",strtotime($return_row['due_date']))."</td>";
+									if($return_row['due_date']!='0000-00-00 00:00:00'){
+									 	echo "<td class='' style='width:100px;'>".date("M d, Y h:m:s a",strtotime($return_row['due_date']))."</td>";
+									}else{
+										echo "<td class='' style='width:100px;'></td>";
+									}
 								 }else {
-									 echo "<td>".date("M d, Y h:m:s a",strtotime($return_row['due_date']))."</td>";
+									if($return_row['due_date']!='0000-00-00 00:00:00'){
+									 	echo "<td>".date("M d, Y h:m:s a",strtotime($return_row['due_date']))."</td>";
+									}else{
+										echo "<td></td>";
+									}
 								 }
 								
 								?>
-								<?php
-								 // if ($return_row['book_penalty'] != 'No Penalty'){
-									//  echo "<td class='' style='width:100px;'>".date("M d, Y h:m:s a",strtotime($return_row['date_returned']))."</td>";
-								 // }else {
-									//  echo "<td>".date("M d, Y h:m:s a",strtotime($return_row['date_returned']))."</td>";
-								 // }
-								
-								?>
-								<?php
-								 // if ($return_row['book_penalty'] != 'No Penalty'){
-									//  echo "<td class='alert alert-warning' style='width:100px;'>Php ".$return_row['book_penalty'].".00</td>";
-								 // }else {
-									//  echo "<td>".$return_row['book_penalty']."</td>";
-								 // }
-								
-								?>
+								<td>
+									<?php if($return_row['status']==0){?>
+									<form method="POST" action="">	
+										<button name="accepted" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Accept</button>
+										<button name="declined" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Decline</button>
+										<?php
+											$allowable_days_query= mysqli_query($con,"select * from allowed_days order by allowed_days_id DESC ") or die (mysqli_error());
+											$allowable_days_row = mysqli_fetch_assoc($allowable_days_query);
+											
+											$timezone = "Asia/Manila";
+											if(function_exists('date_default_timezone_set')) date_default_timezone_set($timezone);
+											$cur_date = date("Y-m-d H:i:s");
+											$date_borrowed = date("Y-m-d H:i:s");
+											$due_date = strtotime($cur_date);
+											$due_date = strtotime("+".$allowable_days_row['no_of_days']." day", $due_date);
+											$due_date = date('Y-m-d H:i:s', $due_date);
+											///$checkout = date('m/d/Y', strtotime("+1 day", strtotime($due_date)));
+											?>
+											<input type="hidden" name="due_date" class="new_text" id="sd" value="<?php echo $due_date ?>" size="16" maxlength="10"  />
+											<input type="hidden" name="date_borrowed" class="new_text" id="sd" value="<?php echo $date_borrowed ?>" size="16" maxlength="10"  />
+											<?php 
+												if (isset($_POST['accepted'])){
+													$date_borrowed =$_POST['date_borrowed'];
+													$due_date =$_POST['due_date'];
+													
+													$trapBookCount= mysqli_query($con,"SELECT count(*) as books_allowed from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed'") or die (mysqli_error());
+													
+													$countBorrowed = mysqli_fetch_assoc($trapBookCount);
+													
+													$bookCountQuery= mysqli_query($con,"SELECT count(*) as book_count from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed' and book_id = $book_id") or die (mysqli_error());
+													
+													$bookCount = mysqli_fetch_assoc($bookCountQuery);
+													
+													$allowed_book_query= mysqli_query($con,"select * from allowed_book order by allowed_book_id DESC ") or die (mysqli_error());
+													$allowed = mysqli_fetch_assoc($allowed_book_query);
+													
+													if ($countBorrowed['books_allowed'] == $allowed['qntty_books']){
+														echo "<script>alert(' ".$allowed['qntty_books']." ".'Books Allowed per User!'." '); window.location='borrowed.php'</script>";
+													}elseif ($bookCount['book_count'] == 1){
+														echo "<script>alert('Book Already Borrowed!'); window.location='borrowed.php'</script>";
+													}else{
+														
+														$update_copies = mysqli_query($con,"SELECT * from book where book_id = '$book_id' ") or die (mysqli_error());
+														$copies_row= mysqli_fetch_assoc($update_copies);
+														
+														$book_copies = $copies_row['book_copies'];
+														$new_book_copies = $book_copies - 1;
+														
+														if ($new_book_copies < 0){
+															echo "<script>alert('Book out of Copy!'); window.location='borrowed.php'</script>";
+														}elseif ($copies_row['status'] == 'Damaged'){
+															echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='borrowed.php'</script>";
+														}elseif ($copies_row['status'] == 'Lost'){
+															echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='borrowed.php'</script>";
+														}else{
+															
+															if ($new_book_copies == '0') {
+																$remark = 'Not Available';
+															} else {
+																$remark = 'Available';
+															}
+															
+															mysqli_query($con,"UPDATE book SET book_copies = '$new_book_copies' where book_id = '$book_id' ") or die (mysqli_error());
+															mysqli_query($con,"UPDATE book SET remarks = '$remark' where book_id = '$book_id' ") or die (mysqli_error());
+															
+															// mysqli_query($con,"INSERT INTO borrow_book(user_id,book_id,date_borrowed,due_date,borrowed_status)
+															// VALUES('$user_id','$book_id','$date_borrowed','$due_date','borrow')") or die (mysqli_error());
+
+															mysqli_query($con,"UPDATE borrow_book SET borrowed_status = 'borrowed', status='1',due_date='$due_date' where borrow_book_id = '$id' ") or die (mysqli_error());
+															
+															$report_history=mysqli_query($con,"select * from admin where admin_id = $id_session ") or die (mysqli_error());
+															$report_history_row=mysqli_fetch_array($report_history);
+															$admin_row=$report_history_row['firstname']." ".$report_history_row['middlename']." ".$report_history_row['lastname'];	
+															
+															mysqli_query($con,"INSERT INTO report 
+															(book_id, user_id, admin_name, detail_action, date_transaction)
+															VALUES ('$book_id','$user_id','$admin_row','Borrowed Book',NOW())") or die(mysqli_error());
+
+														}
+													}
+											?>
+											<script>
+												window.location="borrowed.php";
+											</script>
+											<?php } 
+												if (isset($_POST['declined'])){
+													mysqli_query($con,"UPDATE borrow_book SET borrowed_status = 'declined', status='2' where borrow_book_id = '$id' ") or die (mysqli_error());
+												}
+											?>
+
+										</form>
+									<?php } ?>
+								</td>
 							</tr>
 							
 							<?php 
@@ -168,6 +256,7 @@
 							} 							
 							?>
 							</tbody>
+							
 							</table>
 						</div>
 						

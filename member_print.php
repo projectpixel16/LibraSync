@@ -77,10 +77,11 @@ function printPage() {
 								<tr>
 								<tr>
 									<th>User Name</th>
+									<th>Email Address</th>
 									<th>Contact</th>
 									<th>Gender</th>
 									<th>Address</th>
-									<th>Type</th>
+									<!-- <th>Type</th> -->
 									<!-- <th>Level</th>
 									<th>Section</th> -->
 									<th>Status</th>
@@ -94,10 +95,11 @@ function printPage() {
 ?>
 							<tr>
 								<td style="text-align:center;"><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></td> 
+								<td style="text-align:center;"><?php echo $row['email']; ?></td> 
 								<td style="text-align:center;"><?php echo $row['contact']; ?></td> 
 								<td style="text-align:center;"><?php echo $row['gender']; ?></td> 
 								<td style="text-align:center;"><?php echo $row['address']; ?></td> 
-								<td style="text-align:center;"><?php echo $row['type']; ?></td> 
+								<!-- <td style="text-align:center;"><?php echo $row['type']; ?></td>  -->
 								<!-- <td style="text-align:center;"><?php echo $row['level']; ?></td> 
 								<td style="text-align:center;"><?php echo $row['section']; ?></td>  -->
 								<td style="text-align:center;"><?php echo $row['status']; ?></td>

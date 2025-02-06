@@ -63,6 +63,19 @@ $row=mysqli_fetch_array($query);
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-4" for="password">Password
+									</label>
+                                    <div class="col-md-3">
+                                        <input type="password" value="" name="password" id="password" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="password"></label>
+                                    <div class="col-md-5">
+                                        <span>Leave empty if you do not want to change the password.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">First Name
 									</label>
                                     <div class="col-md-3">
@@ -84,6 +97,13 @@ $row=mysqli_fetch_array($query);
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-4" for="email">Email Address
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type='email' value="<?php echo $row['email']; ?>" autocomplete="off" name="email" id="email" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-4" for="last-name">Contact
                                     </label>
                                     <div class="col-md-3">
@@ -95,9 +115,8 @@ $row=mysqli_fetch_array($query);
                                     </label>
 									<div class="col-md-4">
                                         <select name="gender" class="select2_single form-control" tabindex="-1" >
-                                            <option value="<?php echo $row['gender']; ?>"><?php echo $row['gender']; ?></option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                            <option value="Male" <?php echo ($row['gender']=='Male') ? 'selected' : ''?>>Male</option>
+                                            <option value="Female" <?php echo ($row['gender']=='Female') ? 'selected' : ''?>>Female</option>
                                         </select>
                                     </div>
                                 </div>								
@@ -108,17 +127,16 @@ $row=mysqli_fetch_array($query);
                                         <input type="text" value="<?php echo $row['address']; ?>" name="address" id="last-name2" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
 									<label class="control-label col-md-4" for="last-name">Type
 									</label>
 									<div class="col-md-4">
                                         <select name="type" class="select2_single form-control" tabindex="-1" >
-                                            <!-- <option value="<?php echo $row['type']; ?>"><?php echo $row['type']; ?></option> -->
                                             <option value="Student" <?php echo ($row['type']=='Student') ? 'selected' : ''?>>Student</option>
                                             <option value="Teacher" <?php echo ($row['type']=='Teacher') ? 'selected' : ''?>>Teacher</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- <div class="form-group">
 									<label class="control-label col-md-4" for="last-name">Level
 									</label>
@@ -187,19 +205,24 @@ if (isset($_POST['update'])) {
 // $profile=$_FILES["image"]["name"];
 
 $school_number = $_POST['school_number'];
+$password = $_POST['password'];
 $firstname = $_POST['firstname'];
 $middlename = $_POST['middlename'];
 $lastname = $_POST['lastname'];
+$email = $_POST['email'];
 $contact = $_POST['contact'];
 $gender = $_POST['gender'];
 $address = $_POST['address'];
-$type = $_POST['type'];
+// $type = $_POST['type'];
 // $level = $_POST['level'];
 // $section = $_POST['section'];
 
 {		
-mysqli_query($con," UPDATE user SET school_number='$school_number', firstname='$firstname', middlename='$middlename', lastname='$lastname', contact='$contact', 
-gender='$gender', address='$address', type='$type' WHERE user_id = '$id' ")or die(mysqli_error());
+if($password!=''){
+    mysqli_query($con," UPDATE user SET school_number='$school_number', firstname='$firstname', middlename='$middlename', lastname='$lastname', contact='$contact', gender='$gender', address='$address', email='$email', password='$password' WHERE user_id = '$id' ")or die(mysqli_error());
+}else{
+    mysqli_query($con," UPDATE user SET school_number='$school_number', firstname='$firstname', middlename='$middlename', lastname='$lastname', contact='$contact', gender='$gender', address='$address', email='$email' WHERE user_id = '$id' ")or die(mysqli_error());
+}
 echo "<script>alert('Successfully Updated User Info!'); window.location='user.php'</script>";
 }
 

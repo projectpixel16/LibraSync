@@ -42,6 +42,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-4" for="password">Password <span class="required" style="color:red;">*</span>
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="password" name="password" placeholder="Password" id="password" required="required" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">First Name <span class="required" style="color:red;">*</span>
                                     </label>
                                     <div class="col-md-3">
@@ -63,10 +70,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="last-name">Contact
+                                    <label class="control-label col-md-4" for="last-name">Email Address
                                     </label>
                                     <div class="col-md-3">
-                                        <input type="tel" pattern="[0-9]{11,11}" autocomplete="off"  maxlength="11" name="contact" id="last-name2" class="form-control col-md-7 col-xs-12">
+                                        <input type="email" name="email" placeholder="Email Address" id="email" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="last-name">Contact <span class="required" style="color:red;">*</span>
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="tel" pattern="[0-9]{11,11}" autocomplete="off"  maxlength="11" name="contact" id="last-name2" class="form-control col-md-7 col-xs-12" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -80,13 +94,13 @@
                                     </div>
                                 </div>								
                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="last-name">Address
+                                    <label class="control-label col-md-4" for="last-name">Address <span class="required" style="color:red;">*</span>
                                     </label>
                                     <div class="col-md-4">
-                                        <input type="text" name="address" id="last-name2" class="form-control col-md-7 col-xs-12">
+                                        <input type="text" name="address" id="last-name2" class="form-control col-md-7 col-xs-12" required>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
 									<label class="control-label col-md-4" for="last-name">Type <span class="required" style="color:red;">*</span>
 									</label>
 									<div class="col-md-4">
@@ -95,7 +109,7 @@
                                             <option value="Teacher">Teacher</option>
                                         </select>
                                     </div>
-                                    </div>
+                                </div> -->
                                 <!-- <div class="form-group">
 									<label class="control-label col-md-4" for="last-name">Level <span class="required" style="color:red;">*</span>
 									</label>
@@ -157,13 +171,15 @@
 		//							move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $_FILES["image"]["name"]);			
 		//							$profile=$_FILES["image"]["name"];
 									$school_number = $_POST['school_number'];
+									$password = $_POST['password'];
 									$firstname = $_POST['firstname'];
 									$middlename = $_POST['middlename'];
 									$lastname = $_POST['lastname'];
+									$email = $_POST['email'];
 									$contact = $_POST['contact'];
 									$gender = $_POST['gender'];
 									$address = $_POST['address'];
-									$type = $_POST['type'];
+									// $type = $_POST['type'];
 									// $level = $_POST['level'];
 									// $section = $_POST['section'];
 					
@@ -171,12 +187,12 @@
 					$row=mysqli_num_rows($result);
 					if ($row > 0)
 					{
-					echo "<script>alert('ID Number already active!'); window.location='user.php'</script>";
+					echo "<script>alert('Student ID already exists!'); window.location='user.php'</script>";
 					}
 					else
 					{		
-						mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, type, status, user_added)
-						values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', '$type', 'Active', NOW())")or die(mysqli_error());
+						mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, status, password, email, user_added)
+						values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', 'Active', '$password', '$email', NOW())")or die(mysqli_error());
 						echo "<script>alert('User successfully added!'); window.location='user.php'</script>";
 					}
 			//						}

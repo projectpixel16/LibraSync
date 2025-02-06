@@ -65,9 +65,9 @@
 							<!---		<th>Image</th>	-->
 									<th>School ID</th>
 									<th>Member Full Name</th>
-									<th>Type</th>
-									<!-- <th>Level</th>
-									<th>Section</th> -->
+									<th>Contact No.</th>
+									<th>Email Address</th>
+									<th>Gender</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -89,9 +89,9 @@
 								</td>  either this <td><a target="_blank" href="view_members_barcode.php?code=<?php // echo $row['school_number']; ?>"><?php // echo $row['school_number']; ?></a></td> -->
 								<td><a target="_blank" href="print_barcode_individual.php?code=<?php echo $row['school_number']; ?>"><?php echo $row['school_number']; ?></a></td> 
 								<td><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></td> 
-								<td><?php echo $row['type']; ?></td> 
-								<!-- <td><?php echo $row['level']; ?></td> 
-								<td><?php echo $row['section']; ?></td>  -->
+								<td><?php echo $row['contact']; ?></td> 
+								<td><?php echo $row['email']; ?></td> 
+								<td><?php echo $row['gender']; ?></td> 
 								<td><?php echo $row['status']; ?></td> 
 								<td>
 									<a class="btn btn-primary" for="ViewAdmin" href="view_user.php<?php echo '?user_id='.$id; ?>">

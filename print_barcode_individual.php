@@ -74,7 +74,8 @@ function printPage() {
 		<br/>
 		<br/>
 		<div>
-			<?php echo "<img src = 'BCG/html/image.php?filetype=PNG&dpi=72&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&text=".$code1."&thickness=50&start=NULL&code=BCGcode128' />";?>
+			<img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=<?php echo $code1; ?>" alt="QR Code">
+			<!-- <?php echo "<img src = 'BCG/html/image.php?filetype=PNG&dpi=72&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&text=".$code1."&thickness=50&start=NULL&code=BCGcode128' />";?> -->
 			<h3><?php echo $code2; ?></h3>
 			<h3><?php echo $code3; ?></h3>
 		</div>
