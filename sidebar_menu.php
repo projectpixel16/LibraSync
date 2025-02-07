@@ -47,7 +47,7 @@
 									<a href="home.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li>
-									<a href="user.php"><i class="fa fa-users"></i> Members</a>
+									<a href="user.php"><i class="fa fa-users"></i> Students</a>
                                 </li>
                                 <li>
 									<a href="book.php"><i class="fa fa-book"></i> Books</a>

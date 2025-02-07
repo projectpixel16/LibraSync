@@ -9,7 +9,7 @@ include ('../include/dbcon.php');
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home / Members</small> View Image
+					<small>Home / students</small> View Image
                 </h3>
             </div>
         </div>

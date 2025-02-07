@@ -45,7 +45,7 @@
 							<thead>
 								<tr>
 							<!---		<th>User Image</th>	-->
-									<th>Member Full Name</th>
+									<th>studentFull Name</th>
 									<th>Contact</th>
 									<th>Gender</th>
 									<th>Address</th>

@@ -75,7 +75,7 @@ function printPage() {
 						  <thead>
 								<tr>
 									<th style="width:160px;">School ID Number</th>
-									<th style="width:160px;">Member Name</th>
+									<th style="width:160px;">studentName</th>
 									<th style="width:160px;">Date Log In</th>
 								</tr>
 						  </thead>   

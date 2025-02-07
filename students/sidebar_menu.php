@@ -52,7 +52,18 @@
 									<a href="reserve_book.php?school_number=<?php echo $row['school_number']?>"><i class="fa fa-edit"></i> Reserve</a>
                                 </li>
                                 <li>
-									<a href="borrowed.php"><i class="fa fa-book"></i> Borrowed Books</a>
+									<a href="borrowed.php"><i class="fa fa-book"></i> Borrowed Books
+                                        <span style="position:absolute;background-color: red; color: white; border-radius: 50%; padding: 3px 7px; font-size: 10px;right:10px">
+                                            99
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+									<a href="reserved.php"><i class="fa fa-book"></i> Reserved Books
+                                        <span style="position:absolute;background-color: red; color: white; border-radius: 50%; padding: 3px 7px; font-size: 10px;right:10px">
+                                            99
+                                        </span>
+                                    </a>
                                 </li>
                                 <li>
 									<a href="returned_book.php"><i class="fa fa-book"></i> Returned Books</a>

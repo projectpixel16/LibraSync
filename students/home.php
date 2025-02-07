@@ -29,7 +29,7 @@
                             <span class="count_top"><i class="fa fa-male"></i> <i class="fa fa-female"></i> Student & Teacher</span>
 				</a>
                             <div class="count green"><?php echo $num_rows; ?></div>
-							 <span class="count_bottom">Total of Members</span>							
+							 <span class="count_bottom">Total of students</span>							
                         </div>
                     </div>
 					<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">

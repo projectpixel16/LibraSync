@@ -49,9 +49,9 @@
 						<table class="table table-striped">
 						  <thead>
 								<tr>
-									<th style="width:100px;">Member Image</th>
+									<th style="width:100px;">studentImage</th>
 									<th>School ID Number</th>
-									<th>Member Name</th>
+									<th>studentName</th>
 									<th>Date Log In</th>
 								</tr>
 						  </thead>   

@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home /</small> Members
+					<small>Home /</small> Students
                 </h3>
             </div>
         </div>
@@ -13,29 +13,29 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
 							<a href="member_print.php" target="_blank" style="background:none;">
-							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Members List</button>
+							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Students List</button>
 							</a>
 							<a href="print_barcode.php" target="_blank" style="background:none;">
-							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Members QR Code</button>
+							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Students QR Code</button>
 							</a>
 							<br />
 							<br />
                     <div class="x_title">
-                        <h2><i class="fa fa-users"></i> Members Information</h2>
+                        <h2><i class="fa fa-users"></i> Students Information</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
 							<a href="add_user.php" style="background:none;">
-							<button class="btn btn-primary btn-outline"><i class="fa fa-plus"></i> Add Member</button>
+							<button class="btn btn-primary btn-outline"><i class="fa fa-plus"></i> Add Student</button>
 							</a>
 							</li>
                             <!-- <li>
-							<a href="import_members.php" style="background:none;">
-							<button class="btn btn-success btn-outline"><i class="fa fa-upload"></i> Import Members</button>
+							<a href="import_students.php" style="background:none;">
+							<button class="btn btn-success btn-outline"><i class="fa fa-upload"></i> Import Students</button>
 							</a>
 							</li> -->
                         <!---    <li>
-							<a href="update_members_status.php" style="background:none;">
-							<button class="btn btn-danger btn-outline"><i class="fa fa-cog fa-spin"></i> Activate All Members</button>
+							<a href="update_students_status.php" style="background:none;">
+							<button class="btn btn-danger btn-outline"><i class="fa fa-cog fa-spin"></i> Activate All Students</button>
 							</a>
 							</li>	-->
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -64,7 +64,7 @@
 								<tr>
 							<!---		<th>Image</th>	-->
 									<th>School ID</th>
-									<th>Member Full Name</th>
+									<th>Student Full Name</th>
 									<th>Contact No.</th>
 									<th>Email Address</th>
 									<th>Gender</th>
@@ -86,7 +86,7 @@
 								<?php // else: ?>
 								<img src="images/user.png" width="100px" height="100px" style="border:4px groove #CCCCCC; border-radius:5px;">
 								<?php // endif; ?>
-								</td>  either this <td><a target="_blank" href="view_members_barcode.php?code=<?php // echo $row['school_number']; ?>"><?php // echo $row['school_number']; ?></a></td> -->
+								</td>  either this <td><a target="_blank" href="view_students_barcode.php?code=<?php // echo $row['school_number']; ?>"><?php // echo $row['school_number']; ?></a></td> -->
 								<td><a target="_blank" href="print_barcode_individual.php?code=<?php echo $row['school_number']; ?>"><?php echo $row['school_number']; ?></a></td> 
 								<td><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></td> 
 								<td><?php echo $row['contact']; ?></td> 

@@ -20,7 +20,7 @@ $sort=$_POST['sort'];
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2><i class="fa fa-users"></i> Members Attendance</h2>
+                        <h2><i class="fa fa-users"></i> students Attendance</h2>
                         <ul class="nav navbar-right panel_toolbox">
                   <!--           <li>
 							<a href="add_book.php" style="background:none;">
@@ -69,9 +69,9 @@ $sort=$_POST['sort'];
 								
 							<thead>
 								<tr>
-									<th style="width:160px;">Member Image</th>
+									<th style="width:160px;">studentImage</th>
 									<th style="width:160px;">School ID Number</th>
-									<th style="width:160px;">Member Name</th>
+									<th style="width:160px;">studentName</th>
 									<th style="width:160px;">Date Log In</th>
 								</tr>
 							</thead>

@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home / Members</small>
+					<small>Home / Student</small>
                 </h3>
             </div>
         </div>

@@ -90,7 +90,7 @@
 							<thead>
 								<tr>
 									<th style="width:160px;">No.</th>
-									<th style="width:160px;">Member Name</th>
+									<th style="width:160px;">studentName</th>
 									<th style="width:160px;">Count Log In</th>
 								</tr>
 							</thead>

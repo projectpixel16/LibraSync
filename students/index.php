@@ -81,7 +81,11 @@
                             <input type="password" class="form-control" name="password" placeholder="Password" required />
                         </div>
                         <div>
-								<button class="btn btn-primary submit" type="submit" name="login"><i class="fa fa-check"></i> Log in</button>
+								<button class="btn btn-primary btn-block submit" type="submit" name="login"><i class="fa fa-check"></i> Log in</button>
+                        </div>
+                        <hr>
+                        <div class="text-center text-sm">
+                            <span>Don't have an account yet? <a href="register.php" style="color:blue">Sign up here.</a></span>
                         </div>
                         <div class="clearfix"></div>
                         <div class="separator">

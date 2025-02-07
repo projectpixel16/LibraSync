@@ -99,7 +99,7 @@
 								
 							<thead>
 								<tr>
-									<th>Members Name</th>
+									<th>students Name</th>
 									<th>Book Title</th>
 									<th>Task</th>
 									<th>Person In Charge</th>
