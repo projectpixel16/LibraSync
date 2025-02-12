@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +73,7 @@
         <div id="wrapper">
             <div id="login" class="animate form">
                 <section class="login_content" style="text-align: left;">
-                <form method="post" enctype="multipart/form-data" class="">
+                <form method="POST" enctype="multipart/form-data" class="">
                     <h1 style="text-align: center;">Registration Form</h1>
                     
                     <div class="form-group">
@@ -144,7 +145,7 @@
                     
                     <div class="ln_solid"></div>
                     <div class=" ">
-                        <button type="submit" name="submit" class="btn btn-success btn-block"><i class="fa fa-plus-square"></i> Submit</button>
+                        <button type="submit" name="register" class="btn btn-success btn-block"><i class="fa fa-plus-square"></i> Submit</button>
                     </div>
                     <br>
                     <div class="text-center text-sm">
@@ -152,6 +153,31 @@
                     </div>
                     <hr  style="margin-top: 0px;">
                 </form>
+                <?php
+                    include('../include/dbcon.php');
+                    if (isset($_POST['register'])){
+                        $school_number = $_POST['school_number'];
+                        $password = $_POST['password'];
+                        $firstname = $_POST['firstname'];
+                        $middlename = $_POST['middlename'];
+                        $lastname = $_POST['lastname'];
+                        $email = $_POST['email'];
+                        $contact = $_POST['contact'];
+                        $gender = $_POST['gender'];
+                        $address = $_POST['address'];
+                        $result=mysqli_query($con,"select * from user WHERE school_number='$school_number' ") or die (mysqli_error());
+                        $row=mysqli_num_rows($result);
+                        if ($row > 0){
+                ?>
+                    <div class="alert alert-danger"><h3 class="blink_text">ID Number already active!</h3></div>	
+                <?php }else{ 
+                    mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, status, password, email, user_added)values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', 'Active', '$password', '$email', NOW())") or die (mysqli_error());
+
+                    $login_query=mysqli_query($con,"select * from  user where school_number='$school_number' and password='$password'");
+                    $rows=mysqli_fetch_array($login_query);
+                    $_SESSION['id']=$rows['user_id'];
+                    echo "<script>window.location='home.php'</script>";
+                } } ?>
                 <div class="clearfix"></div>
                 <div class="separator" style="text-align:center">
                 
@@ -163,29 +189,6 @@
                         <p>© <?php echo date('Y'); ?> <i class="fa fa-book"></i>   LibraSync</p>
                     </div>
                 </div>
-<?php
-include('../include/dbcon.php');
-
-if (isset($_POST['login'])){
-
-$username=$_POST['username'];
-$password=$_POST['password'];
-
-$login_query=mysqli_query($con,"select * from   user where school_number='$username' and password='$password'");
-$count=mysqli_num_rows($login_query);
-$row=mysqli_fetch_array($login_query);
-
-if ($count > 0){
-session_start();
-$_SESSION['id']=$row['user_id'];
-
-echo "<script>window.location='home.php'</script>";
-}else{ ?>
-<div class="alert alert-danger"><h3 class="blink_text">Access Denied</h3></div>		
-<?php
-}
-}
-?>
                     <!-- form -->
                 </section>
                 <!-- content -->

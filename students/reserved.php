@@ -91,7 +91,7 @@
 							$return_query= mysqli_query($con,"SELECT * from borrow_book 
 							LEFT JOIN book ON borrow_book.book_id = book.book_id 
 							LEFT JOIN user ON borrow_book.user_id = user.user_id 
-							where borrow_book.user_id='$id_session' $where order by borrow_book.borrow_book_id DESC") or die (mysqli_error());
+							where borrow_book.user_id='$id_session' AND borrow_book.borrowed_status='reserve' $where order by borrow_book.borrow_book_id DESC") or die (mysqli_error());
 								$return_count = mysqli_num_rows($return_query);
 								
 							// $count_penalty = mysqli_query($con,"SELECT sum(book_penalty) FROM return_book ")or die(mysqli_error());

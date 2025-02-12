@@ -88,10 +88,10 @@
 								$where = " and (date(borrow_book.date_borrowed) between '".date("Y-m-d",strtotime($_GET['datefrom']))."' and '".date("Y-m-d",strtotime($_GET['dateto']))."' ) ";
 							}
 							
-							$return_query= mysqli_query($con,"SELECT borrow_book.borrow_book_id,borrow_book.user_id,borrow_book.book_id,borrow_book.book_penalty,borrow_book.due_date,borrow_book.date_borrowed,borrow_book.status,book.book_barcode,book.book_title,user.firstname,user.lastname from borrow_book 
+							$return_query= mysqli_query($con,"SELECT borrow_book.borrow_book_id,borrow_book.user_id,borrow_book.book_id,borrow_book.book_penalty,borrow_book.due_date,borrow_book.date_borrowed,borrow_book.status,book.book_barcode,book.book_title,user.firstname,user.lastname,borrow_book.pickup_date from borrow_book 
 							LEFT JOIN book ON borrow_book.book_id = book.book_id 
 							LEFT JOIN user ON borrow_book.user_id = user.user_id 
-							where (borrow_book.borrowed_status = 'borrowed' OR borrow_book.borrowed_status = 'borrow')  $where order by borrow_book.date_borrowed DESC") or die (mysqli_error());
+							where (borrow_book.borrowed_status = 'borrowed' OR borrow_book.borrowed_status = 'borrow' OR borrow_book.borrowed_status = 'reserve')  $where order by borrow_book.date_borrowed DESC") or die (mysqli_error());
 								$return_count = mysqli_num_rows($return_query);
 								
 							// $count_penalty = mysqli_query($con,"SELECT sum(book_penalty) FROM return_book ")or die(mysqli_error());
@@ -111,6 +111,7 @@
 									<th>ISBN</th>	-->
 									<th>Date Borrowed</th>
 									<th>Due Date</th>
+									<th>Pickup Date</th>
 									<th>Action</th>
 									<!-- <th>Date Returned</th> -->
 									<!-- <th>Penalty</th> -->
@@ -148,6 +149,7 @@
 								 }
 								
 								?>
+								<td><?php $timestamp = strtotime($return_row['pickup_date']); echo ($return_row['pickup_date']!='') ? date("M d, Y h:m:s a", $timestamp) : '' ?></td>
 								<td>
 									<?php if($return_row['status']==0){?>
 									<form method="POST" action="">	
