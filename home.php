@@ -26,7 +26,7 @@
 							$num_rows = mysqli_num_rows($result);
 							?>
 				<a href="user.php">
-                            <span class="count_top"><i class="fa fa-male"></i> <i class="fa fa-female"></i> students</span>
+                            <span class="count_top"><i class="fa fa-male"></i> <i class="fa fa-female"></i> Students</span>
                             <!-- <span class="count_top"><i class="fa fa-male"></i> <i class="fa fa-female"></i> Student & Teacher</span> -->
 				</a>
                             <div class="count green"><?php echo $num_rows; ?></div>

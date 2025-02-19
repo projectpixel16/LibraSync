@@ -67,7 +67,7 @@
 									<th>Title</th>
 									<th>ISBN</th>
 									<th>Author/s</th>
-									<th>Copies</th>
+									<th>Available</th>
 									<th>Category</th>
 									<th>Status</th>
 									<th>Remarks</th>
@@ -77,7 +77,7 @@
 							<tbody>
 							
 							<?php
-							$result= mysqli_query($con,"select * from book order by book_id DESC ") or die (mysqli_error());
+							$result= mysqli_query($con,"select * from book order by book_title ASC ") or die (mysqli_error());
 							while ($row= mysqli_fetch_array ($result) ){
 							$id=$row['book_id'];
 							$category_id=$row['category_id'];

@@ -239,7 +239,8 @@
 									$book_count = mysqli_num_rows($book_query);
 									$book_row = mysqli_fetch_array($book_query);
 									
-									if ($book_row['book_barcode'] != $barcode){
+									if ($book_count==0){
+										// if ($book_row['book_barcode'] != $barcode){
 										echo '
 											<table>
 												<tr>

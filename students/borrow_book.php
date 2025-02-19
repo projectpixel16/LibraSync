@@ -215,7 +215,7 @@
 					<div class="row" style="margin-top:30px;">
 						<form method="post">
 							<div class="col-xs-4">
-								<input type="text" style="margin-bottom:10px; margin-left:-9px;" class="form-control" name="barcode" placeholder="Enter barcode here....." autofocus required />
+								<input type="text" style="margin-bottom:10px; margin-left:-9px;" class="form-control" name="barcode" placeholder="Enter barcode here....." autofocus required autocomplete='off'/>
 							</div>
 						</form>
 						<table class="table table-bordered">
@@ -235,7 +235,8 @@
 									$book_count = mysqli_num_rows($book_query);
 									$book_row = mysqli_fetch_array($book_query);
 									
-									if ($book_row['book_barcode'] != $barcode){
+									if ($book_count==0){
+										// if ($book_row['book_barcode'] != $barcode){
 										echo '
 											<table>
 												<tr>
