@@ -227,7 +227,10 @@
 															mysqli_query($con,"INSERT INTO report 
 															(book_id, user_id, admin_name, detail_action, date_transaction)
 															VALUES ('$book_id','$user_id','$admin_row','Borrowed Book',NOW())") or die(mysqli_error());
-
+															
+															mysqli_query($con,"INSERT INTO notifications 
+															(user_id, message, status)
+															VALUES ('$user_id','The admin has accepted your request to borrow ".$copies_row['book_title']."','unread')") or die(mysqli_error());
 														}
 													}
 											?>

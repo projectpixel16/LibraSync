@@ -1,4 +1,40 @@
-            <!-- top navigation -->
+<script>
+    function fetchReadNotif(id,event) {
+        event.preventDefault(); 
+		fetch(`read_notification.php?id=${id}`)
+        .then(response => response.json())
+        .then(data => {
+            document.referrer;
+        });
+	}
+
+	function fetchNotifications() {
+		fetch("fetch_notifications.php")
+        .then(response => response.json())
+        .then(data => {
+            let notificationList = document.getElementById("notifications");
+            let notificationCount = document.getElementById("notificationCount");
+            // Clear previous notifications
+            notificationList.innerHTML = "";
+            if (data.length > 0) {
+                notificationCount.innerText = data.length;
+                data.forEach(notification => {
+                    let li = document.createElement("li");
+                    li.innerHTML = `<a href="#" onclick="fetchReadNotif(${notification.id}, event)">${notification.message}</a>`;
+                    notificationList.appendChild(li);
+                });
+            } else {
+                notificationCount.innerText = '0'
+                notificationList.innerHTML = "<li>No new notifications</li>";
+            }
+        });
+	}
+	// Fetch notifications every 5 seconds
+	setInterval(fetchNotifications, 1000);
+	// Initial fetch when page loads
+	fetchNotifications();
+</script>          
+        <!-- top navigation -->
             <div class="top_nav">
 
             <div class="nav_menu">
@@ -31,16 +67,18 @@
 
                         <!-- Notification Icon -->
                         <li class="dropdown" >
+                        
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="padding-right:25px">
                                 <i class="fa fa-bell"></i>
-                                <span class="badge badge-danger" style="position:absolute;background:red">3</span> <!-- Dynamic count of notifications -->
+                                <span class="badge badge-danger count" id="notificationCount" style="position:absolute;background:red">0</span> 
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">See all notifications</a></li>
-                            </ul>
+                            <ul class="dropdown-menu dropdown-menu-right animated fadeInDown" id="notifications"></ul>
+                                <!-- <ul class="dropdown-menu dropdown-menu-right animated fadeInDown" id="notifications">
+                                    <li><a href="#">Notification 1</a></li>
+                                    <li><a href="#">Notification 2</a></li>
+                                    <li><a href="#">Notification 3</a></li>
+                                    <li><a href="#">See all notifications</a></li>
+                                </ul> -->
                         </li>
                     </ul>
                 </nav>
