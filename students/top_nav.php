@@ -20,7 +20,7 @@
                 notificationCount.innerText = data.length;
                 data.forEach(notification => {
                     let li = document.createElement("li");
-                    li.innerHTML = `<a href="#" onclick="fetchReadNotif(${notification.id}, event)">${notification.message}</a>`;
+                    li.innerHTML = `<a href="#" class="notif-text" onclick="fetchReadNotif(${notification.id}, event)">${notification.message}</a>`;
                     notificationList.appendChild(li);
                 });
             } else {
@@ -34,6 +34,16 @@
 	// Initial fetch when page loads
 	fetchNotifications();
 </script>          
+<style>
+    .notif-text {
+        display: block!important;
+        width: 250px!important; /* Adjust width as needed */
+        white-space: nowrap!important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-bottom:1px solid #e2e2e2
+    }
+</style>
         <!-- top navigation -->
             <div class="top_nav">
 
@@ -74,10 +84,10 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right animated fadeInDown" id="notifications"></ul>
                                 <!-- <ul class="dropdown-menu dropdown-menu-right animated fadeInDown" id="notifications">
-                                    <li><a href="#">Notification 1</a></li>
-                                    <li><a href="#">Notification 2</a></li>
-                                    <li><a href="#">Notification 3</a></li>
-                                    <li><a href="#">See all notifications</a></li>
+                                    <li><a class="notif-text" href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </a></li>
+                                    <li><a class="notif-text" href="#">Notification 2</a></li>
+                                    <li><a class="notif-text" href="#">Notification 3</a></li>
+                                    <li><a class="notif-text" href="#">See all notifications</a></li>
                                 </ul> -->
                         </li>
                     </ul>
