@@ -38,7 +38,7 @@
     .notif-text {
         display: block!important;
         width: 250px!important; /* Adjust width as needed */
-        white-space: nowrap!important;
+        white-space: wrap!important;
         overflow: hidden;
         text-overflow: ellipsis;
         border-bottom:1px solid #e2e2e2
@@ -83,12 +83,12 @@
                                 <span class="badge badge-danger count" id="notificationCount" style="position:absolute;background:red">0</span> 
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right animated fadeInDown" id="notifications"></ul>
-                                <!-- <ul class="dropdown-menu dropdown-menu-right animated fadeInDown" id="notifications">
+                                <ul class="dropdown-menu dropdown-menu-right animated fadeInDown" id="notifications">
                                     <li><a class="notif-text" href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </a></li>
                                     <li><a class="notif-text" href="#">Notification 2</a></li>
                                     <li><a class="notif-text" href="#">Notification 3</a></li>
                                     <li><a class="notif-text" href="#">See all notifications</a></li>
-                                </ul> -->
+                                </ul>
                         </li>
                     </ul>
                 </nav>
