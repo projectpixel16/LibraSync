@@ -242,11 +242,17 @@
 													}
 											?>
 											<script>
-												window.location="borrowed.php";
+												window.location="borrow.php";
+												// window.location="borrowed.php";
 											</script>
 											<?php } 
 												if (isset($_POST['declined'])){
 													mysqli_query($con,"UPDATE borrow_book SET borrowed_status = 'declined', status='2' where borrow_book_id = '$id' ") or die (mysqli_error());
+											?>
+											<script>
+												window.location="borrow.php";
+											</script>
+											<?php
 												}
 											?>
 
