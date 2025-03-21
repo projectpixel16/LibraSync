@@ -18,8 +18,8 @@ $count = 0;
 			$count++;
 			continue;
 		}
-		mysqli_query($con,"INSERT into user (school_number, firstname ,middlename, lastname, contact, gender, address, type, level, section, status, user_added)
-		values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]','$data[7]','$data[8]','$data[9]','$data[10]',NOW())");
+		mysqli_query($con,"INSERT into user (school_number, firstname ,middlename, lastname, contact, gender, address, type, status, user_added)
+		values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]','$data[7]','$data[8]',NOW())");
 		
 		}
 

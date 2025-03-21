@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home / students /</small>
+					<small>Home / Books /</small>
                 </h3>
             </div>
         </div>
@@ -33,9 +33,10 @@
 
                     </div>
                     <div class="x_content">
-                        <a  href="./import_students_fmt.csv" download="">Click here to download the CSV Format</a>
+                        <a  href="./import_books_fmt.csv" download="">Click here to download the CSV Format</a><br>
+                        <a  href="./category.csv" download="">Click here to download the Categories</a>
                         <!-- content starts here -->
-				<form class="form-horizontal well" action="import_students_query.php" method="post" name="upload_excel" enctype="multipart/form-data">
+				<form class="form-horizontal well" action="import_books_query.php" method="post" name="upload_excel" enctype="multipart/form-data">
 					<fieldset>
 						<div class="control-group">
 							
@@ -49,7 +50,7 @@
 						<div class="control-group">
 							<div class="controls">
 							<button type="submit" id="submit" name="submit" class="btn btn-success button-loading" data-loading-text="Loading..."><i class="fa fa-upload"></i> Upload</button>
-							<a href="user.php"><button type="button" class="btn btn-danger button-loading"><i class="fa fa-reply"></i> Back</button></a>
+							<a href="book.php"><button type="button" class="btn btn-danger button-loading"><i class="fa fa-reply"></i> Back</button></a>
 							</div>
 						</div>
 					</fieldset>

@@ -45,19 +45,19 @@
                                 <li>
 									<a href="book.php"><i class="fa fa-book"></i> Books</a>
                                 </li>
-                                <li>
+                                <!-- <li>
 									<a href="borrow_book.php?school_number=<?php echo $row['school_number']?>"><i class="fa fa-edit"></i> Borrow</a>
-                                </li>
+                                </li> -->
                                 <li>
 									<a href="reserve_book.php?school_number=<?php echo $row['school_number']?>"><i class="fa fa-edit"></i> Reserve</a>
                                 </li>
-                                <li>
+                                <!-- <li>
 									<a href="borrowed.php"><i class="fa fa-book"></i> Borrowed Books
-                                        <!-- <span style="position:absolute;background-color: red; color: white; border-radius: 50%; padding: 3px 7px; font-size: 10px;right:10px">
+                                        <span style="position:absolute;background-color: red; color: white; border-radius: 50%; padding: 3px 7px; font-size: 10px;right:10px">
                                             99
-                                        </span> -->
+                                        </span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li>
 									<a href="reserved.php"><i class="fa fa-book"></i> Reserved Books
                                         <!-- <span style="position:absolute;background-color: red; color: white; border-radius: 50%; padding: 3px 7px; font-size: 10px;right:10px">

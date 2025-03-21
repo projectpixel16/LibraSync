@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home /</small> Students
+					<small>Home /</small> Students Archive
                 </h3>
             </div>
         </div>
@@ -12,27 +12,27 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-							<a href="member_print.php" target="_blank" style="background:none;">
+							<!-- <a href="member_print.php" target="_blank" style="background:none;">
 							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Students List</button>
 							</a>
 							<a href="print_barcode.php" target="_blank" style="background:none;">
 							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Students QR Code</button>
 							</a>
 							<br />
-							<br />
+							<br /> -->
                     <div class="x_title">
                         <h2><i class="fa fa-users"></i> Students Information</h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li>
+                            <!-- <li>
 							<a href="add_user.php" style="background:none;">
 							<button class="btn btn-primary btn-outline"><i class="fa fa-plus"></i> Add Student</button>
 							</a>
-							</li>
-                            <li>
+							</li> -->
+                            <!-- <li>
 							<a href="import_students.php" style="background:none;">
 							<button class="btn btn-success btn-outline"><i class="fa fa-upload"></i> Import Students</button>
 							</a>
-							</li>
+							</li> -->
                         <!---    <li>
 							<a href="update_students_status.php" style="background:none;">
 							<button class="btn btn-danger btn-outline"><i class="fa fa-cog fa-spin"></i> Activate All Students</button>
@@ -75,7 +75,7 @@
 							<tbody>
 							
 							<?php
-							$result= mysqli_query($con,"select * from user where archive='0' order by user_id DESC") or die (mysqli_error());
+							$result= mysqli_query($con,"select * from user where archive='1' order by user_id DESC") or die (mysqli_error());
 							while ($row= mysqli_fetch_array ($result) ){
 							$id=$row['user_id'];
 							?>

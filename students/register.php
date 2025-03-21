@@ -26,43 +26,52 @@
     <script src="../js/jquery.min.js"></script>
 
 <style>
-.blink_text {
--webkit-animation-name: blinker;
--webkit-animation-duration: 1s;
--webkit-animation-timing-function: linear;
--webkit-animation-iteration-count: infinite;
+    .password-container {
+        position: relative;
+        display:inline-block;
+    }
+    .toggle-password {
+        transform: translateY(4.5%);
+        cursor:pointer;
+        font-size:12px;
+    }
+    .blink_text {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
 
--moz-animation-name: blinker;
--moz-animation-duration: 1s;
--moz-animation-timing-function: linear;
--moz-animation-iteration-count: infinite;
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
 
- animation-name: blinker;
- animation-duration: 1s;
- animation-timing-function: linear;
- animation-iteration-count: infinite;
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 
- color:white;
- font-size:16px;
-}
+    color:white;
+    font-size:16px;
+    }
 
-@-moz-keyframes blinker {  
- 0% { opacity: 1.0; }
- 50% { opacity: 0.0; }
- 100% { opacity: 1.0; }
- }
+    @-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+    }
 
-@-webkit-keyframes blinker {  
- 0% { opacity: 1.0; }
- 50% { opacity: 0.0; }
- 100% { opacity: 1.0; }
- }
+    @-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+    }
 
-@keyframes blinker {  
- 0% { opacity: 1.0; }
- 50% { opacity: 0.0; }
- 100% { opacity: 1.0; }
- }
+    @keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+    }
 </style>
 </head>
 
@@ -75,19 +84,39 @@
                 <section class="login_content" style="text-align: left;">
                 <form method="POST" enctype="multipart/form-data" class="">
                     <h1 style="text-align: center;">Registration Form</h1>
-                    
+                    <div class="form-group">
+                        <label class="control-label" for="last-name">Type <span class="required" style="color:red;">*</span>
+                        </label>
+                        <div class="">
+                            <select name="type" id="type" class=" form-control" required="required" tabindex="-1" onChange='generateUniqueId()'>
+                                <option value="Student">Student</option>
+                                <option value="Community Member">Community Member</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="control-label " for="first-name">ID Number <span class="required" style="color:red;">*</span>
                         </label>
                         <div class="">
-                            <input type="number" name="school_number" id="first-name2" required="required" class="form-control  col-xs-12">
+                            <input type="number" name="school_number" id="school_number" required="required" class="form-control  col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label " for="first-name">School Name</label>
+                        <div class="">
+                            <input type="text" name="school_name" id="school_name" class="form-control  col-xs-12">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label " for="password">Password <span class="required" style="color:red;">*</span>
                         </label>
-                        <div class="">
-                            <input type="password" name="password" placeholder="Password" id="password" required="required" class="form-control  col-xs-12">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <input type="password" name="password" placeholder="Password" id="password" required="required" class="form-control ">
+                            </div>
+                            <div class="col-md-1" style="right: 19px!important;">
+                                <button type="button" class="toggle-password btn btn-sm btn-success" onclick="togglePassword()"><span><i class="fa fa-eye"></i></span></button>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -157,6 +186,7 @@
                     include('../include/dbcon.php');
                     if (isset($_POST['register'])){
                         $school_number = $_POST['school_number'];
+                        $school_name = $_POST['school_name'];
                         $password = $_POST['password'];
                         $firstname = $_POST['firstname'];
                         $middlename = $_POST['middlename'];
@@ -165,13 +195,14 @@
                         $contact = $_POST['contact'];
                         $gender = $_POST['gender'];
                         $address = $_POST['address'];
+                        $type = $_POST['type'];
                         $result=mysqli_query($con,"select * from user WHERE school_number='$school_number' ") or die (mysqli_error());
                         $row=mysqli_num_rows($result);
                         if ($row > 0){
                 ?>
                     <div class="alert alert-danger"><h3 class="blink_text">ID Number already active!</h3></div>	
                 <?php }else{ 
-                    mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, status, password, email, user_added)values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', 'Active', '$password', '$email', NOW())") or die (mysqli_error());
+                    mysqli_query($con,"insert into user (school_number,school_name,firstname, middlename, lastname, contact, gender, address, type, status, password, email, user_added)values ('$school_number','$school_name','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', '$type', 'Active', '$password', '$email', NOW())") or die (mysqli_error());
 
                     $login_query=mysqli_query($con,"select * from  user where school_number='$school_number' and password='$password'");
                     $rows=mysqli_fetch_array($login_query);
@@ -195,7 +226,33 @@
             </div>
         </div>
     </div>
-
+    <script>
+    function togglePassword(){
+        var passwordInput = document.getElementById('password');
+        if(passwordInput.type === "password"){
+            passwordInput.type="text";
+        }else{
+            passwordInput.type="password";
+        }
+    }
+    function generateUniqueId(){
+        var type = document.getElementById("type").value; 
+        var redirect = "../get_idnumber.php";
+        $.ajax({
+            data: "type="+type,
+            type: "POST",
+            url: redirect,
+            success: function(output){
+                document.getElementById('school_number').value=output;
+                if(output!=''){
+                    document.getElementById('school_number').readOnly=true;
+                }else{
+                    document.getElementById('school_number').readOnly=false;
+                }
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

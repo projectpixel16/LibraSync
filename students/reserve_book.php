@@ -202,7 +202,11 @@
 									
 							?>
 									<script>
-										window.location="borrow_book.php?school_number=<?php echo $school_number ?>";
+										// document.getElementById('savenBtn').addEventListener("click", function(){
+										// 	var myModal = new bootstrap.Modal(document.getElementById('modalQR'));
+										// 	myModal.show();
+										// })
+										// window.location="reserve_book.php?school_number=<?php echo $school_number ?>";
 									</script>
 							<?php 
 																}
@@ -221,7 +225,7 @@
 								<input type="text" style="margin-bottom:10px; margin-left:-9px;" class="form-control" name="barcode" placeholder="Enter barcode here....." autofocus required />
 							</div>
 						</form>
-						<table class="table table-bordered">
+						<table class="table table-bordered" id="reload">
 							<form method="post" action="">
 							<th style="width:100px;">Book Image</th>
 							<th>Barcode</th>
@@ -259,9 +263,9 @@
 									}else{
 							?>
 							<tr>
-							<input type="hidden" name="user_id" value="<?php echo $user_row['user_id'] ?>">
-							<input type="hidden" name="book_id" value="<?php echo $book_row['book_id'] ?>">
-							<input type="hidden" name="pickdate" value="<?php echo $pickup_date ?>">
+							<input type="hidden" name="user_id" id="user_id" value="<?php echo $user_row['user_id'] ?>">
+							<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_row['book_id'] ?>">
+							<input type="hidden" name="pickdate" id="pickdate" value="<?php echo $pickup_date ?>">
 
 							<td>
 							<?php if($book_row['book_image'] != ""): ?>
@@ -275,7 +279,33 @@
 							<td style="text-transform: capitalize"><?php echo $book_row['author'] ?></td>
 							<td><?php echo $book_row['isbn'] ?></td>
 							<td><?php echo $book_row['status'] ?></td>
-							<td><button name="borrow" class="btn btn-info"><i class="fa fa-check"></i> Reserve</button></td>
+							<td>
+									<!-- <a class="btn btn-info" for="DeleteAdmin" href="#modalQR" data-toggle="modal" data-target="#modalQR">
+										Reserve
+									</a> -->
+									<button  type="button" name="borrow" id="savenBtn" class="btn btn-info" onClick='reserveBook()'><i class="fa fa-check"></i> Reserve</button>
+									<div class="modal fade" id="modalQR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-user"></i> QR</h4>
+											</div>
+											<div class="modal-body">
+													<div class="alert alert-success" style="text-align:center;" id="qr-container">
+														<!-- <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=<?php echo $school_number; ?>" alt="QR Code"> -->
+														<!-- <a href="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=<?php echo $book_id; ?>" download="qrcode.png" target="_blank">
+															<img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=<?php echo $book_id; ?>" alt="QR Code">
+														</a> -->
+													</div>
+													<div class="modal-footer">
+													<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove icon-white"></i> Close</button>
+													
+											</div>
+											</div>
+										</div>
+									</div>
+								<!-- <button type="button" name="borrow" id="savenBtn" class="btn btn-info"><i class="fa fa-check"></i> Reserve</button> -->
+							</td>
 							</tr>
 							<?php } }?>
 
@@ -293,77 +323,82 @@
 							$due_date = date('Y-m-d H:i:s', $due_date);
 							///$checkout = date('m/d/Y', strtotime("+1 day", strtotime($due_date)));
 							?>
-							<input type="hidden" name="due_date" class="new_text" id="sd" value="<?php echo $due_date ?>" size="16" maxlength="10"  />
-							<input type="hidden" name="date_borrowed" class="new_text" id="sd" value="<?php echo $date_borrowed ?>" size="16" maxlength="10"  />
+							<input type="hidden" name="due_date" class="new_text" id="due_date" value="<?php echo $due_date ?>" size="16" maxlength="10"  />
+							<input type="hidden" name="date_borrowed" class="new_text" id="date_borrowed" value="<?php echo $date_borrowed ?>" size="16" maxlength="10"  />
 							
 							<?php 
-								if (isset($_POST['borrow'])){
-									$user_id =$_POST['user_id'];
-									$book_id =$_POST['book_id'];
-									$date_borrowed =$_POST['date_borrowed'];
-									$due_date =$_POST['due_date'];
-									$pickdate =$_POST['pickdate'];
+								// if (isset($_POST['borrow'])){
+									// $user_id =$_POST['user_id'];
+									// $book_id =$_POST['book_id'];
+									// $date_borrowed =$_POST['date_borrowed'];
+									// $due_date =$_POST['due_date'];
+									// $pickdate =$_POST['pickdate'];
 									
-									$trapBookCount= mysqli_query($con,"SELECT count(*) as books_allowed from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed'") or die (mysqli_error());
+									// $trapBookCount= mysqli_query($con,"SELECT count(*) as books_allowed from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed'") or die (mysqli_error());
 									
-									$countBorrowed = mysqli_fetch_assoc($trapBookCount);
+									// $countBorrowed = mysqli_fetch_assoc($trapBookCount);
 									
-									$bookCountQuery= mysqli_query($con,"SELECT count(*) as book_count from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed' and book_id = $book_id") or die (mysqli_error());
+									// $bookCountQuery= mysqli_query($con,"SELECT count(*) as book_count from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed' and book_id = $book_id") or die (mysqli_error());
 									
-									$bookCount = mysqli_fetch_assoc($bookCountQuery);
+									// $bookCount = mysqli_fetch_assoc($bookCountQuery);
 									
-									$allowed_book_query= mysqli_query($con,"select * from allowed_book order by allowed_book_id DESC ") or die (mysqli_error());
-									$allowed = mysqli_fetch_assoc($allowed_book_query);
+									// $allowed_book_query= mysqli_query($con,"select * from allowed_book order by allowed_book_id DESC ") or die (mysqli_error());
+									// $allowed = mysqli_fetch_assoc($allowed_book_query);
 									
-									if ($countBorrowed['books_allowed'] == $allowed['qntty_books']){
-										echo "<script>alert(' ".$allowed['qntty_books']." ".'Books Allowed per User!'." '); window.location='borrow_book.php?school_number=".$school_number."'</script>";
-									}elseif ($bookCount['book_count'] == 1){
-										echo "<script>alert('Book Already Borrowed!'); window.location='borrow_book.php?school_number=".$school_number."'</script>";
-									}else{
+									// if ($countBorrowed['books_allowed'] == $allowed['qntty_books']){
+									// 	echo "<script>alert(' ".$allowed['qntty_books']." ".'Books Allowed per User!'." '); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+									// }elseif ($bookCount['book_count'] == 1){
+									// 	echo "<script>alert('Book Already Borrowed!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+									// }else{
 										
-										$update_copies = mysqli_query($con,"SELECT * from book where book_id = '$book_id' ") or die (mysqli_error());
-										$copies_row= mysqli_fetch_assoc($update_copies);
+									// 	$update_copies = mysqli_query($con,"SELECT * from book where book_id = '$book_id' ") or die (mysqli_error());
+									// 	$copies_row= mysqli_fetch_assoc($update_copies);
 										
-										$book_copies = $copies_row['book_copies'];
-										$new_book_copies = $book_copies - 1;
+									// 	$book_copies = $copies_row['book_copies'];
+									// 	$new_book_copies = $book_copies - 1;
 										
-										if ($new_book_copies < 0){
-											echo "<script>alert('Book out of Copy!'); window.location='borrow_book.php?school_number=".$school_number."'</script>";
-										}elseif ($copies_row['status'] == 'Damaged'){
-											echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='borrow_book.php?school_number=".$school_number."'</script>";
-										}elseif ($copies_row['status'] == 'Lost'){
-											echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='borrow_book.php?school_number=".$school_number."'</script>";
-										}else{
+									// 	if ($new_book_copies < 0){
+									// 		echo "<script>alert('Book out of Copy!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+									// 	}elseif ($copies_row['status'] == 'Damaged'){
+									// 		echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+									// 	}elseif ($copies_row['status'] == 'Lost'){
+									// 		echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+									// 	}else{
 											
-											// if ($new_book_copies == '0') {
-											// 	$remark = 'Not Available';
-											// } else {
-											// 	$remark = 'Available';
-											// }
+									// 		// if ($new_book_copies == '0') {
+									// 		// 	$remark = 'Not Available';
+									// 		// } else {
+									// 		// 	$remark = 'Available';
+									// 		// }
 											
-											// mysqli_query($con,"UPDATE book SET book_copies = '$new_book_copies' where book_id = '$book_id' ") or die (mysqli_error());
-											// mysqli_query($con,"UPDATE book SET remarks = '$remark' where book_id = '$book_id' ") or die (mysqli_error());
+									// 		// mysqli_query($con,"UPDATE book SET book_copies = '$new_book_copies' where book_id = '$book_id' ") or die (mysqli_error());
+									// 		// mysqli_query($con,"UPDATE book SET remarks = '$remark' where book_id = '$book_id' ") or die (mysqli_error());
 											
-											mysqli_query($con,"INSERT INTO borrow_book(user_id,book_id,date_borrowed,pickup_date,borrowed_status)
-											VALUES('$user_id','$book_id','$date_borrowed','$pickdate','reserve')") or die (mysqli_error());
+									// 		mysqli_query($con,"INSERT INTO borrow_book(user_id,book_id,date_borrowed,pickup_date,borrowed_status)
+									// 		VALUES('$user_id','$book_id','$date_borrowed','$pickdate','reserve')") or die (mysqli_error());
 											
-											// $report_history=mysqli_query($con,"select * from user where user_id = $id_session ") or die (mysqli_error());
-											// $report_history_row=mysqli_fetch_array($report_history);
-											// $admin_row=$report_history_row['firstname']." ".$report_history_row['middlename']." ".$report_history_row['lastname'];	
+									// 		// $report_history=mysqli_query($con,"select * from user where user_id = $id_session ") or die (mysqli_error());
+									// 		// $report_history_row=mysqli_fetch_array($report_history);
+									// 		// $admin_row=$report_history_row['firstname']." ".$report_history_row['middlename']." ".$report_history_row['lastname'];	
 											
-											// mysqli_query($con,"INSERT INTO report 
-											// (book_id, user_id, admin_name, detail_action, date_transaction)
-											// VALUES ('$book_id','$user_id','$admin_row','Borrowed Book',NOW())") or die(mysqli_error());
+									// 		// mysqli_query($con,"INSERT INTO report 
+									// 		// (book_id, user_id, admin_name, detail_action, date_transaction)
+									// 		// VALUES ('$book_id','$user_id','$admin_row','Borrowed Book',NOW())") or die(mysqli_error());
 
-										}
-									}
+									// 	}
+									// }
 							?>
-									<script>
-										// window.location="borrow_book.php?school_number=<?php echo $school_number ?>";
-									</script>
+									<!-- <script>
+										document.getElementById('savenBtn').addEventListener("click", function(){
+											var myModal = new bootstrap.Modal(document.getElementById('modalQR'));
+											myModal.show();
+										})
+									</script> -->
+									<!-- window.location="reserve_book.php?school_number=<?php echo $school_number ?>"; -->
 							<?php	
-								}
+								// }
 							?>
+							<input type="hidden" id="school_number" value="<?php echo $school_number; ?>">
 							</form>
 						</table>
 						
@@ -375,5 +410,72 @@
                     </div>
                 </div>
             </div>
+<script>
+	function reserveBook(){
+		
+        var user_id = document.getElementById("user_id").value; 
+        var book_id = document.getElementById("book_id").value; 
+        var date_borrowed = document.getElementById("date_borrowed").value; 
+        var due_date = document.getElementById("due_date").value; 
+        var pickdate = document.getElementById("pickdate").value; 
+        var school_number = document.getElementById("school_number").value; 
+        var redirect = "reservebook_save.php";
+        $.ajax({
+            // data:"user_id="+user_id+"&book_id="+book_id+"&date_borrowed="+date_borrowed+"&due_date="+due_date+"&pickdate="+pickdate+"&school_number="+school_number,
+			data: {
+				user_id: user_id,
+				book_id: book_id,
+				date_borrowed: date_borrowed,
+				due_date: due_date,
+				pickdate: pickdate,
+				school_number: school_number
+			},
+            type: "POST",
+            url: redirect,
+            success: function(output){
+				var substring="<script>"
+				if(output.includes(substring)==true){
+					alert('Error Try Again!')
+				}else{
+					var qrLink = document.createElement("a");
+					qrLink.href = "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data="+book_id+'-'+output;
+					qrLink.download = "qrcode.png";
+					qrLink.target = "_blank";
+					// Create the image element
+					var qrImage = document.createElement("img");
+					qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=90x90&data="+book_id+'-'+output;
+					qrImage.alt = "QR Code";
 
+					// Append image inside anchor tag
+					qrLink.appendChild(qrImage);
+
+					// Append anchor tag to the container
+					document.getElementById("qr-container").appendChild(qrLink);
+					document.getElementById("savenBtn").disabled = true;
+					$("#modalQR").modal('show');
+				}
+            }
+        });
+    }
+</script>
+<!-- <script>
+	// $(document).ready(function(){
+		function popupQR(){
+			document.getElementById('modalQR')style.display = "block";
+			// myModal.show();
+		}
+	// $(document).ready(function(){
+		// document.getElementById('savenBtn').addEventListener("click", function(){
+			
+		// });
+	// });
+</script> -->
+<!-- <script type="text/javascript">
+	$(document).on('click', '#savenBtn', function(e){
+		alert('hi')
+		document.getElementById('modalQR')style.display = "block";
+		// e.preventDefault();
+		// document.getElementById('modalQR')style.display = "block";
+	});
+</script> -->
 <?php include ('footer.php'); ?>

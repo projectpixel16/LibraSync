@@ -1,14 +1,14 @@
 <?php
-
-			include ('include/dbcon.php');
-						$query = mysqli_query($con,"SELECT * FROM `barcode` ORDER BY mid_barcode DESC ") or die (mysqli_error());
-						$fetch = mysqli_fetch_array($query);
-						$mid_barcode = $fetch['mid_barcode'];
-						
-						$new_barcode =  $mid_barcode + 1;
-						$pre_barcode = "RMSML";
-						$suf_barcode = "LMS";
-						$generate_barcode = $pre_barcode.$new_barcode.$suf_barcode;
+    ob_start(); // Start output buffering
+    include ('include/dbcon.php');
+    $query = mysqli_query($con,"SELECT * FROM `barcode` ORDER BY mid_barcode DESC ") or die (mysqli_error());
+    $fetch = mysqli_fetch_array($query);
+    $mid_barcode = $fetch['mid_barcode'];
+    
+    $new_barcode =  $mid_barcode + 1;
+    $pre_barcode = "RMSML";
+    $suf_barcode = "LMS";
+    $generate_barcode = $pre_barcode.$new_barcode.$suf_barcode;
 ?>
 
 <?php include ('header.php'); ?>
@@ -156,13 +156,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label class="control-label col-md-4" for="last-name">Book Image
                                     </label>
                                     <div class="col-md-4">
                                         <input type="file" style="height:44px;" name="image" id="last-name2" class="form-control col-md-7 col-xs-12">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -175,64 +175,61 @@
             <?php
 
 			include ('include/dbcon.php');
-			if (!isset($_FILES['image']['tmp_name'])) {
-			echo "";
-			}else{
-			$file=$_FILES['image']['tmp_name'];
-			$image = $_FILES["image"] ["name"];
-			$image_name= addslashes($_FILES['image']['name']);
-			$size = $_FILES["image"] ["size"];
-			$error = $_FILES["image"] ["error"];
-			{
-						if($size > 10000000) //conditions for the file
-						{
-						die("Format is not allowed or file size is too big!");
-						}
+			// if (!isset($_FILES['image']['tmp_name'])) {
+			// echo "";
+			// }else{
+			// $file=$_FILES['image']['tmp_name'];
+			// $image = $_FILES["image"] ["name"];
+			// $image_name= addslashes($_FILES['image']['name']);
+			// $size = $_FILES["image"] ["size"];
+			// $error = $_FILES["image"] ["error"];
+			// {
+			// 			if($size > 10000000) //conditions for the file
+			// 			{
+			// 			die("Format is not allowed or file size is too big!");
+			// 			}
 						
-					else
-						{
+			// 		else
+			// 			{
 
-					move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $_FILES["image"]["name"]);			
-					$book_image=$_FILES["image"]["name"];
-					
-					$book_title=$_POST['book_title'];
-					$category_id=$_POST['category_id'];
-					$author=$_POST['author'];
-					$author_2=$_POST['author_2'];
-					$author_3=$_POST['author_3'];
-					$author_4=$_POST['author_4'];
-					$author_5=$_POST['author_5'];
-					$book_copies=$_POST['book_copies'];
-					$book_pub=$_POST['book_pub'];
-					$publisher_name=$_POST['publisher_name'];
-					$isbn=$_POST['isbn'];
-					$copyright_year=$_POST['copyright_year'];
-					$status=$_POST['status'];
-					
-					
-					$pre = "RMSML";
-					$mid = $_POST['new_barcode'];
-					$suf = "LMS";
-					$gen = $pre.$mid.$suf;
-					
-					if ($status == 'Lost') {
-						$remark = 'Not Available';
-					} elseif ($status == 'Damaged') {
-						$remark = 'Not Available';
-					} else {
-						$remark = 'Available';
+			// 		move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $_FILES["image"]["name"]);			
+			// 		$book_image=$_FILES["image"]["name"];
+					if($_SERVER["REQUEST_METHOD"] == "POST"){
+                        $book_title=$_POST['book_title'] ?? '';
+                        $category_id=$_POST['category_id'] ?? '' ;
+                        $author=$_POST['author'] ?? '';
+                        $author_2=$_POST['author_2'] ?? '';
+                        $author_3=$_POST['author_3'] ?? '';
+                        $author_4=$_POST['author_4'] ?? '';
+                        $author_5=$_POST['author_5'] ?? '';
+                        $book_copies=$_POST['book_copies'] ?? 0;
+                        $book_pub=$_POST['book_pub'] ?? '';
+                        $publisher_name=$_POST['publisher_name'] ?? '';
+                        $isbn=$_POST['isbn'] ?? '';
+                        $copyright_year=$_POST['copyright_year'] ?? '';
+                        $status=$_POST['status'] ?? '';
+                        
+                        
+                        $pre = "RMSML";
+                        $mid = $_POST['new_barcode'] ?? '';
+                        $suf = "LMS";
+                        $gen = $pre.$mid.$suf;
+                        
+                        if ($status == 'Lost') {
+                            $remark = 'Not Available';
+                        } elseif ($status == 'Damaged') {
+                            $remark = 'Not Available';
+                        } else {
+                            $remark = 'Available';
+                        }
+                        mysqli_query($con,"insert into book (book_title,category_id,author,author_2,author_3,author_4,author_5,book_copies,book_pub,publisher_name,isbn,copyright_year,status,book_barcode,date_added,remarks)
+                        values('$book_title','$category_id','$author','$author_2','$author_3','$author_4','$author_5','$book_copies','$book_pub','$publisher_name','$isbn','$copyright_year','$status','$gen',NOW(),'$remark')")or die(mysqli_error());
+                        mysqli_query($con,"insert into barcode (pre_barcode,mid_barcode,suf_barcode) values ('$pre', '$mid', '$suf') ") or die (mysqli_error());
+                        header("location: view_barcode.php?code=".urlencode($gen));
+                        exit();
 					}
-					
-					{
-					mysqli_query($con,"insert into book (book_title,category_id,author,author_2,author_3,author_4,author_5,book_copies,book_pub,publisher_name,isbn,copyright_year,status,book_barcode,book_image,date_added,remarks)
-					values('$book_title','$category_id','$author','$author_2','$author_3','$author_4','$author_5','$book_copies','$book_pub','$publisher_name','$isbn','$copyright_year','$status','$gen','$book_image',NOW(),'$remark')")or die(mysqli_error());
-					
-					mysqli_query($con,"insert into barcode (pre_barcode,mid_barcode,suf_barcode) values ('$pre', '$mid', '$suf') ") or die (mysqli_error());
-					}
-					header("location: view_barcode.php?code=".$gen);
-					}
-                }
-            }
+            //     }
+            // }
             ?>
 						
                         <!-- content ends here -->
@@ -240,5 +237,4 @@
                 </div>
             </div>
         </div>
-
 <?php include ('footer.php'); ?>

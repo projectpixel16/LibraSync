@@ -44,7 +44,7 @@ $row=mysqli_fetch_assoc($query1);
   ?>
 
                             <form method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label class="control-label col-md-4" for="last-name">Book Image
                                     </label>
                                     <div class="col-md-4">
@@ -56,7 +56,7 @@ $row=mysqli_fetch_assoc($query1);
 										</a>
                                         <input type="file" style="height:44px; margin-top:10px;" name="image" id="last-name2" class="form-control col-md-7 col-xs-12" />
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">Title
                                     </label>
@@ -216,18 +216,18 @@ book_pub='$book_pub', publisher_name='$publisher_name', isbn='$isbn', copyright_
 echo "<script>alert('Successfully Updated Book Info!'); window.location='book.php'</script>";	
 
 									}else{
-										if($size > 10000000) //conditions for the file
-										{
-										die("Format is not allowed or file size is too big!");
-										}
+										// if($size > 10000000) //conditions for the file
+										// {
+										// die("Format is not allowed or file size is too big!");
+										// }
 										
-if(!empty($_FILES["image"]["tmp_name"])){
-move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $_FILES["image"]["name"]);          
-$profile=$_FILES["image"]["name"];
-$bi = " ,book_image = '$profile' ";
-}else{
-    $bi = '';
-}
+// if(!empty($_FILES["image"]["tmp_name"])){
+// move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $_FILES["image"]["name"]);          
+// $profile=$_FILES["image"]["name"];
+// $bi = " ,book_image = '$profile' ";
+// }else{
+//     $bi = '';
+// }
 
 					$book_title=$_POST['book_title'];
 					$category_id=$_POST['category_id'];
@@ -253,7 +253,7 @@ $bi = " ,book_image = '$profile' ";
 					}
 					
 mysqli_query($con," UPDATE book SET book_title='$book_title', category_id='$category_id', author='$author', author_2='$author_2', author_3='$author_3', author_4='$author_4', author_5='$author_5', book_copies='$book_copies', 
-book_pub='$book_pub', publisher_name='$publisher_name', isbn='$isbn', copyright_year='$copyright_year', status='$status', remarks='$remark' $bi WHERE book_id = '$id' ")or die(mysqli_error());
+book_pub='$book_pub', publisher_name='$publisher_name', isbn='$isbn', copyright_year='$copyright_year', status='$status', remarks='$remark' WHERE book_id = '$id' ")or die(mysqli_error());
 echo "<script>alert('Successfully Updated Book Info!'); window.location='book.php'</script>";	
 
 }

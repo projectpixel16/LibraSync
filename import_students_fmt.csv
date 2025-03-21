@@ -1,1 +1,3 @@
-School ID Number,First Name,Middle Name,Last Namr,Contact number,Gender (Male/Female),Address,Type (Student/Teacher) ,Grade Level,Section,Status (Active/Inactive)
+School ID Number,First Name,Middle Name,Last Namr,Contact number,Gender (Male/Female),Address,Type (Student/Community Member) ,Status (Active/Inactive)
+a,1asd,ads2,asd2`,ad,Male,asd,Student,Active
+ab,as22,asd21,asea2,asd2,Female,www,Community Member,Active
