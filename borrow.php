@@ -40,25 +40,31 @@
                     <div class="x_content">
                         <!-- content starts here -->
 
-<div class="container-fluid">
-<div class="row">
+<!-- <div class="container-fluid"> -->
+<!-- <div class="row">
 	<div class="col-md-4"></div>
-	<div class="col-md-4">
+	<div class="col-md-4"> -->
 	
 						<form method="post" action="">
-                                        <select name="school_number" class="select2_single form-control" required="required" tabindex="-1" >
-										<option value="0">Select School ID Number</option>
-										<?php
-										$result= mysqli_query($con,"select * from user where status = 'Active' and archive='0' ") or die (mysqli_error());
-										while ($row= mysqli_fetch_array ($result) ){
-										// $id=$row['user_id'];
-										?>
-                                            <option value="<?php echo $row['school_number']; ?>"><?php echo $row['school_number']; ?> - <?php echo $row['firstname']; ?></option>
-										<?php } ?>
-                                        </select>
-				<br />
-				<br />
-						<button name="submit" type="submit" class="btn btn-primary" style="margin-left:110px;"><i class="glyphicon glyphicon-log-in"></i> Submit</button>
+								<div class="col-lg-3"></div>
+								<div class="col-lg-4">
+									<select name="school_number" class="select2_single form-control" required="required" tabindex="-1" >
+									<option value="0">Select School ID Number</option>
+									<?php
+									$result= mysqli_query($con,"select * from user where status = 'Active' and archive='0' ") or die (mysqli_error());
+									while ($row= mysqli_fetch_array ($result) ){
+									// $id=$row['user_id'];
+									?>
+										<option value="<?php echo $row['school_number']; ?>"><?php echo $row['school_number']; ?> - <?php echo $row['firstname']; ?></option>
+									<?php } ?>
+									</select>
+								</div>
+						<!-- <br />
+						<br /> -->
+								<div class="col-lg-2" style="margin-top:3px!important;margin-left:0px!important;">
+									<button name="submit" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Submit</button>
+								</div>
+								<div class="col-lg-3"></div>
 						</form>
 
 <?php
@@ -81,10 +87,10 @@
 	}
 ?>
 
-	</div>
+	<!-- </div>
 	<div class="col-md-4"></div>
-</div>
-</div>			
+</div> -->
+<!-- </div>			 -->
 <div class="x_content">
                         <!-- content starts here -->
 
@@ -222,8 +228,8 @@
 															// mysqli_query($con,"UPDATE book SET book_copies = '$new_book_copies' where book_id = '$book_id' ") or die (mysqli_error());
 															// mysqli_query($con,"UPDATE book SET remarks = '$remark' where book_id = '$book_id' ") or die (mysqli_error());
 															
-															mysqli_query($con,"INSERT INTO borrow_book(user_id,book_id,date_borrowed,borrowed_status)
-															VALUES('$user_id','$book_id','$date_borrowed','reserve')") or die (mysqli_error());
+															// mysqli_query($con,"INSERT INTO borrow_book(user_id,book_id,date_borrowed,borrowed_status)
+															// VALUES('$user_id','$book_id','$date_borrowed','reserve')") or die (mysqli_error());
 
 															mysqli_query($con,"UPDATE borrow_book SET borrowed_status = 'reserve', status='1' where borrow_book_id = '$id' ") or die (mysqli_error());
 															
@@ -314,26 +320,31 @@
 		// alert(IDS[0])
 		alert('Successfully Borrowed!');
 		window.location="borrow.php";
-		// var user_id = document.getElementById("user_id").value; 
+		// alert('hi')
+		// // var user_id = document.getElementById("user_id").value; 
+		
 		// var date_borrowed = document.getElementById("date_borrowed").value; 
-		// var due_date = document.getElementById("due_date").value; 
+		// // var due_date = document.getElementById("due_date").value; 
 		// // var book_id = document.getElementById("book_id").value; 
 		// // var borrow_book_id = document.getElementById("borrow_book_id").value; 
-		// var id_session = document.getElementById("id_session").value; 
+		// // var id_session = document.getElementById("id_session").value; 
         // var redirect = "reserve_qrsave.php";
+		
         // $.ajax({
 		// 	data: {
-		// 		user_id: user_id,
-		// 		book_id: book_id,
+		// 		// user_id: user_id,
+		// 		// book_id: book_id,
 		// 		date_borrowed: date_borrowed,
-		// 		due_date: due_date,
-		// 		borrow_book_id: borrow_book_id,
-		// 		id_session: id_session
+		// 		// due_date: due_date,
+		// 		// borrow_book_id: borrow_book_id,
+		// 		// id_session: id_session
 		// 	},
         //     type: "POST",
         //     url: redirect,
         //     success: function(output){
-		// 		window.location="borrow.php";
+		// 		console.log("Server Response: ", output);
+		// 		alert('hello')
+		// 		// window.location="borrow.php";
         //     }
         // });
 		

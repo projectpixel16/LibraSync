@@ -94,13 +94,13 @@
 								<td><?php echo $row['gender']; ?></td> 
 								<td><?php echo $row['status']; ?></td> 
 								<td>
-									<a class="btn btn-primary" for="ViewAdmin" href="view_user.php<?php echo '?user_id='.$id; ?>">
+									<a class="btn btn-primary" title="View" for="ViewAdmin" href="view_user.php<?php echo '?user_id='.$id; ?>">
 										<i class="fa fa-search"></i>
 									</a>
-									<a class="btn btn-warning" for="ViewAdmin" href="edit_user.php<?php echo '?user_id='.$id; ?>">
+									<a class="btn btn-warning" title="Edit" for="ViewAdmin" href="edit_user.php<?php echo '?user_id='.$id; ?>">
 									<i class="fa fa-edit"></i>
 									</a>
-									<a class="btn btn-danger" for="DeleteAdmin" href="#delete<?php echo $id;?>" data-toggle="modal" data-target="#delete<?php echo $id;?>">
+									<a title="Archive" class="btn btn-danger" for="DeleteAdmin" href="#delete<?php echo $id;?>" data-toggle="modal" data-target="#delete<?php echo $id;?>">
 										<i class="glyphicon glyphicon-inbox icon-white"></i>
 									</a>
 			

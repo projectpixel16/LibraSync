@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home / students /</small>
+					<small>Home / Students /</small>
                 </h3>
             </div>
         </div>
@@ -33,13 +33,14 @@
 
                     </div>
                     <div class="x_content">
-                        <a  href="./import_students_fmt.csv" download="">Click here to download the CSV Format</a>
+                        <a  href="./import_students_fmt.xlsx" download="">Click here to download the Excel Format</a>
                         <!-- content starts here -->
-				<form class="form-horizontal well" action="import_students_query.php" method="post" name="upload_excel" enctype="multipart/form-data">
+				<!-- <form class="form-horizontal well" action="import_students_query.php" method="post" name="upload_excel" enctype="multipart/form-data"> -->
+                <form class="form-horizontal well"  method="post" name="upload_excel" enctype="multipart/form-data">
 					<fieldset>
 						<div class="control-group">
 							
-								<label>CSV/Excel File:</label>
+								<label>Excel File:</label>
 							
 							<div class="controls">
 								<input type="file" multiple name="filename" id="filename" class="input-large">
@@ -48,7 +49,7 @@
 						<br/>	
 						<div class="control-group">
 							<div class="controls">
-							<button type="submit" id="submit" name="submit" class="btn btn-success button-loading" data-loading-text="Loading..."><i class="fa fa-upload"></i> Upload</button>
+							<button type="button" id="submit" name="submit" onclick="upload_btn()" class="btn btn-success button-loading" data-loading-text="Loading..."><i class="fa fa-upload"></i> Upload</button>
 							<a href="user.php"><button type="button" class="btn btn-danger button-loading"><i class="fa fa-reply"></i> Back</button></a>
 							</div>
 						</div>
@@ -60,5 +61,29 @@
                 </div>
             </div>
         </div>
-
+<script>
+    function upload_btn() {
+        var redirect = "import_students_query.php";
+        let doc = document.getElementById("filename").files[0];
+        let formData = new FormData();
+        formData.append("doc", doc);
+        var conf = confirm('Are you sure you want to upload this file?');
+        if(conf){
+            $.ajax({
+                type: "POST",
+                url: redirect,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function(){ 
+                    document.getElementById("submit").disabled = true;
+                },
+                success: function(output){
+                    alert('Successfully imported a excel file!');
+                    document.location='user.php';
+                }
+            });
+        }
+    }
+</script>
 <?php include ('footer.php'); ?>

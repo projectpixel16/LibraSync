@@ -1,15 +1,8 @@
-
 <!--slider-->
 			<div id="slidy-container">
 				<figure id="slidy">
 					<img class="img-responsive img-rounded" src="images/back.jpg" alt="">
 					<img class="img-responsive img-rounded" src="images/back2.jpg" alt="">
-					<!-- <img class="img-responsive img-rounded" src="images/RMSML2.jpg" alt="">
-					<img class="img-responsive img-rounded" src="images/RMSML3.jpg" alt="">
-					<img class="img-responsive img-rounded" src="images/RMSML4.jpg" alt="">
-					<img class="img-responsive img-rounded" src="images/RMSML5.jpg" alt="">
-					<img class="img-responsive img-rounded" src="images/RMSML6.jpg" alt="">
-					<img class="img-responsive img-rounded" src="images/RMSML7.jpg" alt=""> -->
 				</figure>
 			</div>
 			<script>

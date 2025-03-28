@@ -78,10 +78,40 @@
 
                 </div>
                 <!-- /top tiles -->
-				
-				
+<?php
+	$sql = "SELECT COUNT(borrow_book.user_id) AS borrow_count, school_name FROM borrow_book INNER JOIN user ON borrow_book.user_id=user.user_id WHERE borrow_book.status='1' GROUP BY school_name ORDER BY school_name ASC";
+	$result = $con->query($sql);
 
-<?php include('slide.php'); ?>
-				
-
+	$dataPoints = [];
+	while ($row = $result->fetch_assoc()) {
+		$dataPoints[] = [
+			'y' => $row['borrow_count'],
+			"label" => $row['school_name']
+		];
+	}
+ 
+?>
+<script>
+	window.onload = function() {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		animationEnabled: true,
+		theme: "light2",
+		title:{
+			text: "Borrower's Per School"
+		},
+		axisY: {
+			title: "Borrower's Per School"
+		},
+		data: [{
+			type: "column",
+			yValueFormatString: "#,##0.##",
+			dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+		}]
+	});
+	chart.render();
+	
+	}
+</script>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="js/canvasjs.min.js"></script>
 <?php include ('footer.php'); ?>
