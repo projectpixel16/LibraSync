@@ -37,50 +37,50 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">ID Number <span class="required" style="color:red;">*</span>
                                     </label>
-                                    <div class="col-md-2">
-                                        <input type="number" name="school_number" id="first-name2" required="required" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4">
+                                        <input type="number" name="school_number" id="first-name2" required="required" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="password">Password <span class="required" style="color:red;">*</span>
                                     </label>
-                                    <div class="col-md-3">
-                                        <input type="password" name="password" placeholder="Password" id="password" required="required" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4">
+                                        <input type="password" name="password" placeholder="Password" id="password" required="required" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">First Name <span class="required" style="color:red;">*</span>
                                     </label>
-                                    <div class="col-md-3">
-                                        <input type="text" name="firstname" placeholder="First Name....." id="first-name2" required="required" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4">
+                                        <input type="text" name="firstname" placeholder="First Name....." id="first-name2" required="required" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">Middle Name
                                     </label>
-                                    <div class="col-md-3">
-                                        <input type="text" name="middlename" placeholder="MI / Middle Name....." id="first-name2" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4">
+                                        <input type="text" name="middlename" placeholder="MI / Middle Name....." id="first-name2" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="last-name">Last Name <span class="required" style="color:red;">*</span>
                                     </label>
-                                    <div class="col-md-3">
-                                        <input type="text" name="lastname" placeholder="Last Name....." id="last-name2" required="required" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4">
+                                        <input type="text" name="lastname" placeholder="Last Name....." id="last-name2" required="required" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="last-name">Email Address
                                     </label>
-                                    <div class="col-md-3">
-                                        <input type="email" name="email" placeholder="Email Address" id="email" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4">
+                                        <input type="email" name="email" placeholder="Email Address" id="email" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="last-name">Contact <span class="required" style="color:red;">*</span>
                                     </label>
-                                    <div class="col-md-3">
-                                        <input type="tel" pattern="[0-9]{11,11}" autocomplete="off"  maxlength="11" name="contact" id="last-name2" class="form-control col-md-7 col-xs-12" required>
+                                    <div class="col-md-4">
+                                        <input type="tel" pattern="[0-9]{11,11}" autocomplete="off"  maxlength="11" name="contact" id="last-name2" class="form-control " required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -97,79 +97,26 @@
                                     <label class="control-label col-md-4" for="last-name">Address <span class="required" style="color:red;">*</span>
                                     </label>
                                     <div class="col-md-4">
-                                        <input type="text" name="address" id="last-name2" class="form-control col-md-7 col-xs-12" required>
+                                        <input type="text" name="address" id="last-name2" class="form-control " required>
                                     </div>
                                 </div>
-                                <!-- <div class="form-group">
-									<label class="control-label col-md-4" for="last-name">Type <span class="required" style="color:red;">*</span>
-									</label>
-									<div class="col-md-4">
-                                        <select name="type" class="select2_single form-control" required="required" tabindex="-1" >
-                                            <option value="Student">Student</option>
-                                            <option value="Teacher">Teacher</option>
-                                        </select>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="form-group">
-									<label class="control-label col-md-4" for="last-name">Level <span class="required" style="color:red;">*</span>
-									</label>
-									<div class="col-md-4">
-                                        <select name="level" class="select2_single form-control" required="required" tabindex="-1" >
-                                            <option value="Grade 7">Grade 7</option>
-                                            <option value="Grade 8">Grade 8</option>
-                                            <option value="Grade 9">Grade 9</option>
-                                            <option value="Grade 10">Grade 10</option>
-                                            <option value="Faculty">Faculty</option>
-                                        </select>
-                                </div> -->
-                                    </div>
-                                <!-- <div class="form-group">
-                                    <label class="control-label col-md-4" for="first-name">Section <span class="required" style="color:red;">*</span>
-                                    </label>
-                                    <div class="col-md-3">
-                                        <input type="text" name="section" placeholder="Section....." id="first-name2" required="required" class="form-control col-md-7 col-xs-12">
-                                    </div>
-                                </div> -->
-                        <!---        <div class="form-group">
-                                    <label class="control-label col-md-4" for="last-name">User Image <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-4">
-                                        <input type="file" style="height:44px;" name="image" id="last-name2" class="form-control col-md-7 col-xs-12">
-                                    </div>
-                                </div>	-->
-                                <div class="ln_solid"></div>
+                                <!-- <div class="ln_solid"></div> -->
+                                <hr>
                                 <div class="form-group">
-                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                        <a href="user.php"><button type="button" class="btn btn-primary"><i class="fa fa-times-circle-o"></i> Cancel</button></a>
-                                        <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-plus-square"></i> Submit</button>
-                                    </div>
+                                    <center>
+                                        <div class="">
+                                            <a href="user.php">
+                                                <button type="button" class="btn btn-primary" style="font-size:14px;padding:5px 10px"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                                            </a>
+                                            <button type="submit" name="submit" class="btn btn-success" style="font-size:14px;padding:5px 10px"><i class="fa fa-plus-square"></i> Submit</button>
+                                        </div>
+                                    </center>
                                 </div>
                             </form>
 							
 							<?php	
 							include ('include/dbcon.php');
-                if (isset($_POST['submit'])){
-							
-		//					if (!isset($_FILES['image']['tmp_name'])) {
-		//					echo "";
-		//					}else{
-		//					$file=$_FILES['image']['tmp_name'];
-		//					$image = $_FILES["image"] ["name"];
-		//					$image_name= addslashes($_FILES['image']['name']);
-		//					$size = $_FILES["image"] ["size"];
-		//					$error = $_FILES["image"] ["error"];
-		//					
-		//					{
-		//								if($size > 10000000) //conditions for the file
-		//								{
-		//								die("Format is not allowed or file size is too big!");
-		//								}
-		//								
-		//							else
-		//								{
-		//
-		//							move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $_FILES["image"]["name"]);			
-		//							$profile=$_FILES["image"]["name"];
+                                if (isset($_POST['submit'])){
 									$school_number = $_POST['school_number'];
 									$password = $_POST['password'];
 									$firstname = $_POST['firstname'];
@@ -179,24 +126,19 @@
 									$contact = $_POST['contact'];
 									$gender = $_POST['gender'];
 									$address = $_POST['address'];
-									// $type = $_POST['type'];
-									// $level = $_POST['level'];
-									// $section = $_POST['section'];
 					
-					$result=mysqli_query($con,"select * from user WHERE school_number='$school_number' ") or die (mysqli_error());
-					$row=mysqli_num_rows($result);
-					if ($row > 0)
-					{
-					echo "<script>alert('Student ID already exists!'); window.location='user.php'</script>";
-					}
-					else
-					{		
-						mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, status, password, email, user_added)
-						values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', 'Active', '$password', '$email', NOW())")or die(mysqli_error());
-						echo "<script>alert('User successfully added!'); window.location='user.php'</script>";
-					}
-			//						}
-			//						}
+                                    $result=mysqli_query($con,"select * from user WHERE school_number='$school_number' ") or die (mysqli_error());
+                                    $row=mysqli_num_rows($result);
+                                    if ($row > 0)
+                                    {
+                                    echo "<script>alert('Student ID already exists!'); window.location='user.php'</script>";
+                                    }
+                                    else
+                                    {		
+                                        mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, status, password, email, user_added)
+                                        values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', 'Active', '$password', '$email', NOW())")or die(mysqli_error());
+                                        echo "<script>alert('User successfully added!'); window.location='user.php'</script>";
+                                    }
 							}
 								?>
 						

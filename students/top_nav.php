@@ -39,8 +39,8 @@
         display: block!important;
         width: 250px!important; /* Adjust width as needed */
         white-space: wrap!important;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        /* overflow: hidden;
+        text-overflow: ellipsis; */
         border-bottom:1px solid #e2e2e2
     }
 </style>
