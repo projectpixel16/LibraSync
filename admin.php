@@ -76,13 +76,13 @@ $admin_type  = $user_row['admin_type'];
 								<td><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></td>
 							<!---	<td><?php // echo $row['admin_type']; ?></td>	-->
 								<td>
-									<a class="btn btn-primary" for="ViewAdmin" href="view_admin.php<?php echo '?admin_id='.$id; ?>">
+									<a class="btn btn-primary" title="View" for="ViewAdmin" href="view_admin.php<?php echo '?admin_id='.$id; ?>">
 										<i class="fa fa-search"></i>
 									</a>
-									<a class="btn btn-warning" for="ViewAdmin" href="edit_admin.php<?php echo '?admin_id='.$id; ?>">
+									<a class="btn btn-warning" title="Edit" for="ViewAdmin" href="edit_admin.php<?php echo '?admin_id='.$id; ?>">
 										<i class="fa fa-edit"></i>
 									</a>
-									<a class="btn btn-danger" for="DeleteAdmin" href="#delete<?php echo $id;?>" data-toggle="modal" data-target="#delete<?php echo $id;?>">
+									<a class="btn btn-danger" title="Delete" for="DeleteAdmin" href="#delete<?php echo $id;?>" data-toggle="modal" data-target="#delete<?php echo $id;?>">
 										<i class="glyphicon glyphicon-trash icon-white"></i>
 									</a>
 			

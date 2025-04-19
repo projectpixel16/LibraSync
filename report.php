@@ -43,7 +43,7 @@
 						
                         <div class="clearfix"></div>
 						
-						<!-- <form method="POST" action="report.php" class="form-inline">
+						<form method="POST" action="report_search.php" class="form-inline">
                                 <div class="control-group">
                                     <div class="controls">
                                         <div class="col-md-3">
@@ -66,9 +66,10 @@
                                     <div class="controls">
                                         <div class="col-md-2">
 											<select class="form-control" name="status" style="color:black;">
-												<option>---All---</option>
-												<option>Borrowed Book</option>
-												<option>Returned Book</option>
+												<option value="All">---All---</option>
+												<option value="reserved">Reserved Book</option>
+												<option value="borrowed">Borrowed Book</option>
+												<option value="returned">Returned Book</option>
 											</select>
                                         </div>
                                     </div>
@@ -76,7 +77,7 @@
 								
 								<button type="submit" name="search" class="btn btn-primary btn-outline"><i class="fa fa-calendar-o"></i> Search By Date Transaction</button>
 								
-						</form> -->
+						</form>
 						
 						<span style="float:left;">
 					<?php 
@@ -99,7 +100,9 @@
 								
 							<thead>
 								<tr>
-									<th>students Name</th>
+									<th>Students Name</th>
+									<th>School Name</th>
+									<th>Address</th>
 									<th>Book Title</th>
 									<th>Task</th>
 									<th>Person In Charge</th>
@@ -110,8 +113,8 @@
 							
 							<?php
 							$result= mysqli_query($con,"select * from report 
-							LEFT JOIN book ON report.book_id = book.book_id 
-							LEFT JOIN user ON report.user_id = user.user_id 
+							INNER JOIN book ON report.book_id = book.book_id 
+							INNER JOIN user ON report.user_id = user.user_id 
 							order by report.report_id DESC ") or die (mysqli_error());
 							while ($row= mysqli_fetch_array ($result) ){
 							$id=$row['report_id'];
@@ -121,6 +124,8 @@
 							?>
 							<tr>
 								<td><?php echo $user_name; ?></td>
+								<td><?php echo $row['school_name']; ?></td>
+								<td><?php echo $row['address']; ?></td>
 								<td><?php echo $row['book_title']; ?></td>
 								<td><?php echo $row['detail_action']; ?></td>
 								<td><?php echo $row['admin_name']; ?></td> 

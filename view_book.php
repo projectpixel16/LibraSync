@@ -44,7 +44,7 @@
 								
 							<thead>
 								<tr>
-									<th style="width:100px;">Book Image</th>
+									<!-- <th style="width:100px;">Book Image</th> -->
 									<th>Barcode</th>
 									<th>Title</th>
 									<th>Author/s</th>
@@ -68,13 +68,13 @@
 		while($row = mysqli_fetch_array($result1)){
 		?>
 							<tr>
-								<td>
+								<!-- <td>
 								<?php if($row['book_image'] != ""): ?>
 								<img src="upload/<?php echo $row['book_image']; ?>" width="150px" height="180px" style="border:4px groove #CCCCCC; border-radius:5px;">
 								<?php else: ?>
 								<img src="images/book_image.jpg" width="150px" height="180px" style="border:4px groove #CCCCCC; border-radius:5px;">
 								<?php endif; ?>
-								</td> 
+								</td>  -->
 								<td><?php echo $row['book_barcode']; ?></td>
 								<td style="word-wrap: break-word; width: 10em;"><?php echo $row['book_title']; ?></td>
 								<td style="word-wrap: break-word; width: 10em;"><?php echo $row['author']."<br />".$row['author_2']."<br />".$row['author_3']."<br />".$row['author_4']."<br />".$row['author_5']; ?></td>

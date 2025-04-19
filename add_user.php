@@ -1,5 +1,17 @@
-<?php include ('header.php'); ?>
-
+<?php 
+    include ('header.php'); 
+?>
+<style>
+    .password-container {
+        position: relative;
+        display:inline-block;
+    }
+    .toggle-password {
+        transform: translateY(4.5%);
+        cursor:pointer;
+        font-size:12px;
+    }
+</style>
         <div class="page-title">
             <div class="title_left">
                 <h3>
@@ -35,17 +47,39 @@
 
                             <form method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
                                 <div class="form-group">
+									<label class="control-label col-md-4" for="last-name">Type <span class="required" style="color:red;">*</span>
+									</label>
+									<div class="col-md-3">
+                                        <select name="type" id="type" class=" form-control" required="required" tabindex="-1" onChange='generateUniqueId()'>
+                                            <option value="Student">Student</option>
+                                            <option value="Community Member">Community Member</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-4" for="first-name">ID Number <span class="required" style="color:red;">*</span>
                                     </label>
-                                    <div class="col-md-4">
-                                        <input type="number" name="school_number" id="first-name2" required="required" class="form-control ">
+                                    <div class="col-md-3">
+                                        <input type="number" name="school_number" id="school_number" required="required" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="school_name">School Name
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="text" name="school_name" id="school_name"  class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="password">Password <span class="required" style="color:red;">*</span>
                                     </label>
-                                    <div class="col-md-4">
-                                        <input type="password" name="password" placeholder="Password" id="password" required="required" class="form-control ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="password" name="password" placeholder="Password" id="password" required="required" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                        <div class="col-md-2" style="right: 19px!important;">
+                                            <button type="button" class="toggle-password btn btn-sm btn-success" onclick="togglePassword()"><span><i class="fa fa-eye"></i></span></button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -87,7 +121,7 @@
                                     <label class="control-label col-md-4" for="last-name">Gender <span class="required" style="color:red;">*</span>
                                     </label>
 									<div class="col-md-4">
-                                        <select name="gender" class="select2_single form-control" required="required" tabindex="-1" >
+                                        <select name="gender" class="form-control" required="required" tabindex="-1" >
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                         </select>
@@ -118,6 +152,7 @@
 							include ('include/dbcon.php');
                                 if (isset($_POST['submit'])){
 									$school_number = $_POST['school_number'];
+									$school_name = $_POST['school_name'];
 									$password = $_POST['password'];
 									$firstname = $_POST['firstname'];
 									$middlename = $_POST['middlename'];
@@ -126,19 +161,24 @@
 									$contact = $_POST['contact'];
 									$gender = $_POST['gender'];
 									$address = $_POST['address'];
+									$type = $_POST['type'];
+									// $level = $_POST['level'];
+									// $section = $_POST['section'];
 					
-                                    $result=mysqli_query($con,"select * from user WHERE school_number='$school_number' ") or die (mysqli_error());
-                                    $row=mysqli_num_rows($result);
-                                    if ($row > 0)
-                                    {
-                                    echo "<script>alert('Student ID already exists!'); window.location='user.php'</script>";
-                                    }
-                                    else
-                                    {		
-                                        mysqli_query($con,"insert into user (school_number,firstname, middlename, lastname, contact, gender, address, status, password, email, user_added)
-                                        values ('$school_number','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', 'Active', '$password', '$email', NOW())")or die(mysqli_error());
-                                        echo "<script>alert('User successfully added!'); window.location='user.php'</script>";
-                                    }
+					$result=mysqli_query($con,"select * from user WHERE school_number='$school_number' ") or die (mysqli_error());
+					$row=mysqli_num_rows($result);
+					if ($row > 0)
+					{
+					echo "<script>alert('Student ID already exists!'); window.location='user.php'</script>";
+					}
+					else
+					{		
+						mysqli_query($con,"insert into user (school_number,school_name,firstname, middlename, lastname, contact, gender, address, type, status, password, email, user_added)
+						values ('$school_number','$school_name','$firstname', '$middlename', '$lastname', '$contact', '$gender', '$address', '$type', 'Active', '$password', '$email', NOW())")or die(mysqli_error());
+						echo "<script>alert('User successfully added!'); window.location='user.php'</script>";
+					}
+			//						}
+			//						}
 							}
 								?>
 						
@@ -147,5 +187,32 @@
                 </div>
             </div>
         </div>
+<script>
+    function togglePassword(){
+        var passwordInput = document.getElementById('password');
+        if(passwordInput.type === "password"){
+            passwordInput.type="text";
+        }else{
+            passwordInput.type="password";
+        }
+    }
 
+    function generateUniqueId(){
+        var type = document.getElementById("type").value; 
+        var redirect = "get_idnumber.php";
+        $.ajax({
+            data: "type="+type,
+            type: "POST",
+            url: redirect,
+            success: function(output){
+                document.getElementById('school_number').value=output;
+                if(output!=''){
+                    document.getElementById('school_number').readOnly=true;
+                }else{
+                    document.getElementById('school_number').readOnly=false;
+                }
+            }
+        });
+    }
+</script>
 <?php include ('footer.php'); ?>

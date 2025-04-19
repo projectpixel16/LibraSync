@@ -66,7 +66,7 @@ function printPage() {
 				<center><h5 style = "font-style:Calibri; margin-top:-14px;"></h5> Rafael M. Salas Memorial Library</center>
 			
 <button type="submit" id="print" onclick="printPage()">Print</button>	
-			<p style = "margin-left:3px; margin-top:50px; font-size:14pt; font-weight:bold;">studentBarcode Individual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			<p style = "margin-left:3px; margin-top:50px; font-size:14pt; font-weight:bold;">Student Barcode Individual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <div align="right">
 		<b style="color:blue;">Date Prepared:</b>
 		<?php include('currentdate.php'); ?>

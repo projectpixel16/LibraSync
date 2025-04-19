@@ -28,11 +28,11 @@
 							<button class="btn btn-primary btn-outline"><i class="fa fa-plus"></i> Add Student</button>
 							</a>
 							</li>
-                            <!-- <li>
+                            <li>
 							<a href="import_students.php" style="background:none;">
 							<button class="btn btn-success btn-outline"><i class="fa fa-upload"></i> Import Students</button>
 							</a>
-							</li> -->
+							</li>
                         <!---    <li>
 							<a href="update_students_status.php" style="background:none;">
 							<button class="btn btn-danger btn-outline"><i class="fa fa-cog fa-spin"></i> Activate All Students</button>
@@ -75,7 +75,7 @@
 							<tbody>
 							
 							<?php
-							$result= mysqli_query($con,"select * from user order by user_id DESC") or die (mysqli_error());
+							$result= mysqli_query($con,"select * from user where archive='0' order by user_id DESC") or die (mysqli_error());
 							while ($row= mysqli_fetch_array ($result) ){
 							$id=$row['user_id'];
 							?>
@@ -94,14 +94,14 @@
 								<td><?php echo $row['gender']; ?></td> 
 								<td><?php echo $row['status']; ?></td> 
 								<td>
-									<a class="btn btn-primary" for="ViewAdmin" href="view_user.php<?php echo '?user_id='.$id; ?>">
+									<a class="btn btn-primary" title="View" for="ViewAdmin" href="view_user.php<?php echo '?user_id='.$id; ?>">
 										<i class="fa fa-search"></i>
 									</a>
-									<a class="btn btn-warning" for="ViewAdmin" href="edit_user.php<?php echo '?user_id='.$id; ?>">
+									<a class="btn btn-warning" title="Edit" for="ViewAdmin" href="edit_user.php<?php echo '?user_id='.$id; ?>">
 									<i class="fa fa-edit"></i>
 									</a>
-									<a class="btn btn-danger" for="DeleteAdmin" href="#delete<?php echo $id;?>" data-toggle="modal" data-target="#delete<?php echo $id;?>">
-										<i class="glyphicon glyphicon-trash icon-white"></i>
+									<a title="Archive" class="btn btn-danger" for="DeleteAdmin" href="#delete<?php echo $id;?>" data-toggle="modal" data-target="#delete<?php echo $id;?>">
+										<i class="glyphicon glyphicon-inbox icon-white"></i>
 									</a>
 			
 									<!-- delete modal user -->
@@ -113,7 +113,7 @@
 										</div>
 										<div class="modal-body">
 												<div class="alert alert-danger">
-													Are you sure you want to delete?
+													Are you sure you want to archive this student?
 												</div>
 												<div class="modal-footer">
 												<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove icon-white"></i> No</button>
