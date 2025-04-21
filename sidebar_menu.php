@@ -61,6 +61,12 @@
 							<div class="separator"></div>
                             <ul class="nav side-menu">
                                 <li>
+									<a href="borrowqr_scanner.php"><i class="fa fa-camera"></i> Borrow QR Scanner</a>
+                                </li>
+                                <li>
+									<a href="reserveqr_scanner.php"><i class="fa fa-camera"></i> Reserved QR Scanner</a>
+                                </li>
+                                <li>
 									<a href="borrow.php"><i class="fa fa-edit"></i> Borrow</a>
                                 </li>
                                 <!-- <li>

@@ -227,7 +227,7 @@
 						</form>
 						<table class="table table-bordered" id="reload">
 							<form method="post" action="">
-							<th style="width:100px;">Book Image</th>
+							<!-- <th style="width:100px;">Book Image</th> -->
 							<th>Barcode</th>
 							<th>Title</th>
 							<th>Author</th>
@@ -267,13 +267,13 @@
 							<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_row['book_id'] ?>">
 							<input type="hidden" name="pickdate" id="pickdate" value="<?php echo $pickup_date ?>">
 
-							<td>
+							<!-- <td>
 							<?php if($book_row['book_image'] != ""): ?>
 							<img src="../upload/<?php echo $book_row['book_image']; ?>" width="100px" height="100px" style="border:4px groove #CCCCCC; border-radius:5px;">
 							<?php else: ?>
 							<img src="../images/book_image.jpg" width="150px" height="180px" style="border:4px groove #CCCCCC; border-radius:5px;">
 							<?php endif; ?>
-							</td> 
+							</td>  -->
 							<td><?php echo $book_row['book_barcode'] ?></td>
 							<td style="text-transform: capitalize"><?php echo $book_row['book_title'] ?></td>
 							<td style="text-transform: capitalize"><?php echo $book_row['author'] ?></td>
@@ -283,7 +283,8 @@
 									<!-- <a class="btn btn-info" for="DeleteAdmin" href="#modalQR" data-toggle="modal" data-target="#modalQR">
 										Reserve
 									</a> -->
-									<button  type="button" name="borrow" id="savenBtn" class="btn btn-info" onClick='reserveBook()'><i class="fa fa-check"></i> Reserve</button>
+									<!-- <button  type="button" name="borrow" id="savenBtn" class="btn btn-info" onClick='reserveBook()'><i class="fa fa-check"></i> Reserve</button> -->
+									<button name="borrow" id="savenBtn" class="btn btn-info"><i class="fa fa-check"></i> Reserve</button>
 									<div class="modal fade" id="modalQR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
@@ -327,66 +328,66 @@
 							<input type="hidden" name="date_borrowed" class="new_text" id="date_borrowed" value="<?php echo $date_borrowed ?>" size="16" maxlength="10"  />
 							
 							<?php 
-								// if (isset($_POST['borrow'])){
-									// $user_id =$_POST['user_id'];
-									// $book_id =$_POST['book_id'];
-									// $date_borrowed =$_POST['date_borrowed'];
-									// $due_date =$_POST['due_date'];
-									// $pickdate =$_POST['pickdate'];
+								if (isset($_POST['borrow'])){
+									$user_id =$_POST['user_id'];
+									$book_id =$_POST['book_id'];
+									$date_borrowed =$_POST['date_borrowed'];
+									$due_date =$_POST['due_date'];
+									$pickdate =$_POST['pickdate'];
 									
-									// $trapBookCount= mysqli_query($con,"SELECT count(*) as books_allowed from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed'") or die (mysqli_error());
+									$trapBookCount= mysqli_query($con,"SELECT count(*) as books_allowed from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed'") or die (mysqli_error());
 									
-									// $countBorrowed = mysqli_fetch_assoc($trapBookCount);
+									$countBorrowed = mysqli_fetch_assoc($trapBookCount);
 									
-									// $bookCountQuery= mysqli_query($con,"SELECT count(*) as book_count from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed' and book_id = $book_id") or die (mysqli_error());
+									$bookCountQuery= mysqli_query($con,"SELECT count(*) as book_count from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed' and book_id = $book_id") or die (mysqli_error());
 									
-									// $bookCount = mysqli_fetch_assoc($bookCountQuery);
+									$bookCount = mysqli_fetch_assoc($bookCountQuery);
 									
-									// $allowed_book_query= mysqli_query($con,"select * from allowed_book order by allowed_book_id DESC ") or die (mysqli_error());
-									// $allowed = mysqli_fetch_assoc($allowed_book_query);
+									$allowed_book_query= mysqli_query($con,"select * from allowed_book order by allowed_book_id DESC ") or die (mysqli_error());
+									$allowed = mysqli_fetch_assoc($allowed_book_query);
 									
-									// if ($countBorrowed['books_allowed'] == $allowed['qntty_books']){
-									// 	echo "<script>alert(' ".$allowed['qntty_books']." ".'Books Allowed per User!'." '); window.location='reserve_book.php?school_number=".$school_number."'</script>";
-									// }elseif ($bookCount['book_count'] == 1){
-									// 	echo "<script>alert('Book Already Borrowed!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
-									// }else{
+									if ($countBorrowed['books_allowed'] == $allowed['qntty_books']){
+										echo "<script>alert(' ".$allowed['qntty_books']." ".'Books Allowed per User!'." '); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+									}elseif ($bookCount['book_count'] == 1){
+										echo "<script>alert('Book Already Borrowed!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+									}else{
 										
-									// 	$update_copies = mysqli_query($con,"SELECT * from book where book_id = '$book_id' ") or die (mysqli_error());
-									// 	$copies_row= mysqli_fetch_assoc($update_copies);
+										$update_copies = mysqli_query($con,"SELECT * from book where book_id = '$book_id' ") or die (mysqli_error());
+										$copies_row= mysqli_fetch_assoc($update_copies);
 										
-									// 	$book_copies = $copies_row['book_copies'];
-									// 	$new_book_copies = $book_copies - 1;
+										$book_copies = $copies_row['book_copies'];
+										$new_book_copies = $book_copies - 1;
 										
-									// 	if ($new_book_copies < 0){
-									// 		echo "<script>alert('Book out of Copy!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
-									// 	}elseif ($copies_row['status'] == 'Damaged'){
-									// 		echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
-									// 	}elseif ($copies_row['status'] == 'Lost'){
-									// 		echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
-									// 	}else{
+										if ($new_book_copies < 0){
+											echo "<script>alert('Book out of Copy!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+										}elseif ($copies_row['status'] == 'Damaged'){
+											echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+										}elseif ($copies_row['status'] == 'Lost'){
+											echo "<script>alert('Book Cannot Borrow At This Moment!'); window.location='reserve_book.php?school_number=".$school_number."'</script>";
+										}else{
 											
-									// 		// if ($new_book_copies == '0') {
-									// 		// 	$remark = 'Not Available';
-									// 		// } else {
-									// 		// 	$remark = 'Available';
-									// 		// }
+											// if ($new_book_copies == '0') {
+											// 	$remark = 'Not Available';
+											// } else {
+											// 	$remark = 'Available';
+											// }
 											
-									// 		// mysqli_query($con,"UPDATE book SET book_copies = '$new_book_copies' where book_id = '$book_id' ") or die (mysqli_error());
-									// 		// mysqli_query($con,"UPDATE book SET remarks = '$remark' where book_id = '$book_id' ") or die (mysqli_error());
+											// mysqli_query($con,"UPDATE book SET book_copies = '$new_book_copies' where book_id = '$book_id' ") or die (mysqli_error());
+											// mysqli_query($con,"UPDATE book SET remarks = '$remark' where book_id = '$book_id' ") or die (mysqli_error());
 											
-									// 		mysqli_query($con,"INSERT INTO borrow_book(user_id,book_id,date_borrowed,pickup_date,borrowed_status)
-									// 		VALUES('$user_id','$book_id','$date_borrowed','$pickdate','reserve')") or die (mysqli_error());
+											mysqli_query($con,"INSERT INTO borrow_book(user_id,book_id,date_borrowed,pickup_date,borrowed_status)
+											VALUES('$user_id','$book_id','$date_borrowed','$pickdate','reserve')") or die (mysqli_error());
 											
-									// 		// $report_history=mysqli_query($con,"select * from user where user_id = $id_session ") or die (mysqli_error());
-									// 		// $report_history_row=mysqli_fetch_array($report_history);
-									// 		// $admin_row=$report_history_row['firstname']." ".$report_history_row['middlename']." ".$report_history_row['lastname'];	
+											// $report_history=mysqli_query($con,"select * from user where user_id = $id_session ") or die (mysqli_error());
+											// $report_history_row=mysqli_fetch_array($report_history);
+											// $admin_row=$report_history_row['firstname']." ".$report_history_row['middlename']." ".$report_history_row['lastname'];	
 											
-									// 		// mysqli_query($con,"INSERT INTO report 
-									// 		// (book_id, user_id, admin_name, detail_action, date_transaction)
-									// 		// VALUES ('$book_id','$user_id','$admin_row','Borrowed Book',NOW())") or die(mysqli_error());
+											// mysqli_query($con,"INSERT INTO report 
+											// (book_id, user_id, admin_name, detail_action, date_transaction)
+											// VALUES ('$book_id','$user_id','$admin_row','Borrowed Book',NOW())") or die(mysqli_error());
 
-									// 	}
-									// }
+										}
+									}
 							?>
 									<!-- <script>
 										document.getElementById('savenBtn').addEventListener("click", function(){
@@ -394,9 +395,11 @@
 											myModal.show();
 										})
 									</script> -->
-									<!-- window.location="reserve_book.php?school_number=<?php echo $school_number ?>"; -->
+									<script>
+										window.location="reserve_book.php?school_number=<?php echo $school_number ?>";
+									</script>
 							<?php	
-								// }
+								}
 							?>
 							<input type="hidden" id="school_number" value="<?php echo $school_number; ?>">
 							</form>
@@ -433,6 +436,7 @@
             type: "POST",
             url: redirect,
             success: function(output){
+				console.log(output)
 				var substring="<script>"
 				if(output.includes(substring)==true){
 					alert('Error Try Again!')
