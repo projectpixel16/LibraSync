@@ -4,22 +4,21 @@
                 <!-- top tiles -->
                 <div class="row tile_count" style="margin-right:-245px;">
 					 <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                        <div class="left"></div>
+                        
                         <div class="right">
 							<?php
 							$result = mysqli_query($con,"SELECT * FROM admin");
 							$num_rows = mysqli_num_rows($result);
 							?>
-				<a href="admin.php">
-                            <span class="count_top"><i class="fa fa-users"></i> Admin</span>
-				</a>
+								<a href="admin.php">
+                            		<span class="count_top"><i class="fa fa-users"></i> Admin</span>
+								</a>
                             <div class="count green"><?php echo $num_rows; ?></div>
-							 <span class="count_bottom"> Total of Admin</span>
-
+							<span class="count_bottom"> Total of Admin</span>
                         </div>
                     </div>
 					<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                        <div class="left"></div>
+                        
                         <div class="right">
 							<?php
 							$result = mysqli_query($con,"SELECT * FROM user");
@@ -34,7 +33,7 @@
                         </div>
                     </div>
 					<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                        <div class="left"></div>
+                        
                         <div class="right">
 							<?php
 							$result = mysqli_query($con,"SELECT * FROM book");
@@ -48,7 +47,7 @@
 					  </div>
                     </div>
 					<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                        <div class="left"></div>
+                        
                         <div class="right">
 							<?php
 							$result = mysqli_query($con,"SELECT * FROM borrow_book");
@@ -62,7 +61,7 @@
                         </div>
                     </div>
 					<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                      <div class="left"></div>
+                      
                         <div class="right">
 							<?php
 							$result = mysqli_query($con,"SELECT * FROM return_book");

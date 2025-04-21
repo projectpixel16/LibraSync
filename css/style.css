@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-body{ width:1000px; margin:25px auto; padding:0px; font-family:Roboto, sans-serif!important;  }
+/* body{ width:1000px; margin:25px auto; padding:0px; font-family:Roboto, sans-serif!important;  } */
 .uploadArea{ min-height:300px; height:auto; border:1px dotted #ccc; padding:10px; cursor:move; margin-bottom:10px; position:relative;}
 h1, h5{ padding:0px; margin:0px; }
-h1.title{ font-family:'Boogaloo', cursive; padding:10px; }
+/* h1.title{ font-family:'Boogaloo', cursive; padding:10px; } */
 .uploadArea h1{ color:#ccc; width:100%; z-index:0; text-align:center; vertical-align:middle; position:absolute; top:25px;}
 .dfiles{ clear:both; border:1px solid #ccc; background-color:#E4E4E4; padding:3px;  position:relative; height:25px; margin:3px; z-index:1; width:97%; opacity:0.6; cursor:default;}
 h5{ width:95%; line-height:25px;}

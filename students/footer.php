@@ -3,14 +3,14 @@
 							<!-- /page content -->
 
 						<!-- footer content -->
-						<footer>
+						<!-- <footer>
 							<div class="">
 								<p class="pull-right">  LibraSync
 									<span class="lead"> <i class="fa fa-university"></i> Rafael M. Salas Memorial Library</span>
 								</p>
 							</div>
 							<div class="clearfix"></div>
-						</footer>
+						</footer> -->
 						<!-- /footer content -->
 
 					</div><!---end right col-->
@@ -46,6 +46,21 @@
 
     <!-- datepicker -->
     <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.getElementById("menu_toggle1");
+            
+            menuToggle.addEventListener("click", function () {
+            const body = document.body;
+
+            if (body.classList.contains("nav-md")) {
+                body.classList.remove("nav-md");
+                body.classList.add("nav-sm");
+            } else {
+                body.classList.remove("nav-sm");
+                body.classList.add("nav-md");
+            }
+            });
+        });
         $(document).ready(function () {
 
             var cb = function (start, end, label) {
