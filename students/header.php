@@ -75,7 +75,7 @@
 </head>
 
 
-<body class="nav-md">
+<body class="nav-md student">
 <?php require ('../include/dbcon.php'); ?>
 <?php require ('session.php'); ?>
 
@@ -86,5 +86,5 @@
 				<?php include ('top_nav.php'); ?>
 				
 					<!-- page content -->
-					<div class="right_col" role="main">
+					<div class="right_col " id="student" role="main">
 						<div class="">
