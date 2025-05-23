@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home /</small> Admin Profile
+					<small>Home /</small> Librarian Profile
                 </h3>
             </div>
         </div>
@@ -13,7 +13,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2><i class="fa fa-info"></i> Admin Information</h2>
+                        <h2><i class="fa fa-info"></i> Librarian Information</h2>
                         <ul class="nav navbar-right panel_toolbox">
 <?php
 $user_query  = mysqli_query($con,"select * from admin where admin_id = '$id_session'")or die(mysqli_error());
@@ -24,7 +24,7 @@ $admin_type  = $user_row['admin_type'];
 					?>
                             <li>
 							<a href="add_admin.php" style="background:none;">
-							<button class="btn btn-primary"><i class="fa fa-plus"></i> Add Admin</button>
+							<button class="btn btn-primary"><i class="fa fa-plus"></i> Add Librarian</button>
 							</a>
 							</li>
 					<?php } ?>

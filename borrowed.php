@@ -88,7 +88,7 @@
 								$where = " and (date(borrow_book.date_borrowed) between '".date("Y-m-d",strtotime($_GET['datefrom']))."' and '".date("Y-m-d",strtotime($_GET['dateto']))."' ) ";
 							}
 							
-							$return_query= mysqli_query($con,"SELECT borrow_book.borrow_book_id,borrow_book.user_id,borrow_book.book_id,borrow_book.book_penalty,borrow_book.due_date,borrow_book.date_borrowed,borrow_book.status,book.book_barcode,book.book_title,user.firstname,user.lastname,borrow_book.pickup_date from borrow_book 
+							$return_query= mysqli_query($con,"SELECT borrow_book.borrow_book_id,borrow_book.borrowed_status,borrow_book.user_id,borrow_book.book_id,borrow_book.book_penalty,borrow_book.due_date,borrow_book.date_borrowed,borrow_book.status,book.book_barcode,book.book_title,user.firstname,user.lastname,borrow_book.pickup_date from borrow_book 
 							LEFT JOIN book ON borrow_book.book_id = book.book_id 
 							LEFT JOIN user ON borrow_book.user_id = user.user_id 
 							where (borrow_book.borrowed_status = 'borrowed' OR borrow_book.borrowed_status = 'borrow' OR borrow_book.borrowed_status = 'reserve')  $where order by borrow_book.date_borrowed DESC") or die (mysqli_error());
@@ -151,7 +151,7 @@
 								?>
 								<td><?php $timestamp = strtotime($return_row['pickup_date']); echo ($return_row['pickup_date']!='') ? date("M d, Y h:m:s a", $timestamp) : '' ?></td>
 								<td>
-									<?php if($return_row['status']==0){?>
+									<?php if($return_row['status']==0 && $return_row['borrowed_status']!='borrowed'){?>
 									<form method="POST" action="">	
 										<button name="accepted" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Accept</button>
 										<button name="declined" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Decline</button>
@@ -179,7 +179,7 @@
 													
 													$countBorrowed = mysqli_fetch_assoc($trapBookCount);
 													
-													$bookCountQuery= mysqli_query($con,"SELECT count(*) as book_count from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed' and book_id = $book_id") or die (mysqli_error());
+													$bookCountQuery= mysqli_query($con,"SELECT count(*) as book_count from borrow_book where user_id = '$user_id' and borrowed_status != 'borrowed' and book_id = $book_id") or die (mysqli_error());
 													
 													$bookCount = mysqli_fetch_assoc($bookCountQuery);
 													

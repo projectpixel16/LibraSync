@@ -72,7 +72,7 @@
 									<th>Title</th>
 									<th>ISBN</th>
 									<th>Author/s</th>
-									<th>Available</th>
+									<th>Quantity</th>
 									<th>Category</th>
 									<th>Status</th>
 									<th>Remarks</th>
@@ -82,7 +82,7 @@
 							<tbody>
 							
 							<?php
-							$result= mysqli_query($con,"select * from book order by book_title ASC ") or die (mysqli_error());
+							$result= mysqli_query($con,"select * from book where archive = 0 order by book_title ASC ") or die (mysqli_error());
 							while ($row= mysqli_fetch_array ($result) ){
 							$id=$row['book_id'];
 							$category_id=$row['category_id'];
@@ -108,11 +108,14 @@
 								<td><?php echo $row['status']; ?></td> 
 								<td><?php echo $row['remarks']; ?></td> 
 								<td>
-									<a class="btn btn-primary" title="View" for="ViewAdmin" href="view_book.php<?php echo '?book_id='.$id; ?>">
+									<a class="btn btn-primary" title="View" for="ViewBook" href="view_book.php<?php echo '?book_id='.$id; ?>">
 										<i class="fa fa-search"></i>
 									</a>
-									<a class="btn btn-warning" title="Edit" for="ViewAdmin" href="edit_book.php<?php echo '?book_id='.$id; ?>">
+									<a class="btn btn-warning" title="Edit" for="ViewBook" href="edit_book.php<?php echo '?book_id='.$id; ?>">
 									<i class="fa fa-edit"></i>
+									</a>
+									<a title="Archive" class="btn btn-danger" for="DeleteBook" href="#delete<?php echo $id;?>" data-toggle="modal" data-target="#delete<?php echo $id;?>">
+										<i class="glyphicon glyphicon-inbox icon-white"></i>
 									</a>
 								<!--	<a class="btn btn-danger" for="DeleteAdmin" href="#delete<?php //echo $id;?>" data-toggle="modal" data-target="#delete<?php //echo $id;?>">
 										<i class="glyphicon glyphicon-trash icon-white"></i>
@@ -124,15 +127,15 @@
 									<div class="modal-dialog">
 										<div class="modal-content">
 										<div class="modal-header">
-											<h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-user"></i> User</h4>
+											<h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-book"></i> Book</h4>
 										</div>
 										<div class="modal-body">
 												<div class="alert alert-danger">
-													Are you sure you want to delete?
+													Are you sure you want to archive this book?
 												</div>
 												<div class="modal-footer">
 												<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove icon-white"></i> No</button>
-												<a href="delete_user.php<?php echo '?book_id='.$id; ?>" style="margin-bottom:5px;" class="btn btn-primary"><i class="glyphicon glyphicon-ok icon-white"></i> Yes</a>
+												<a href="delete_book.php<?php echo '?book_id='.$id; ?>" style="margin-bottom:5px;" class="btn btn-primary"><i class="glyphicon glyphicon-ok icon-white"></i> Yes</a>
 												</div>
 										</div>
 										</div>

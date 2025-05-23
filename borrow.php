@@ -1,4 +1,8 @@
-<?php include ('header.php'); ?>
+<?php include ('header.php'); 
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+	require 'vendor/autoload.php';
+?>
 <!-- <script src="https://unpkg.com/html5-qrcode"></script> -->
 <script type="text/javascript" charset="utf-8" language="javascript" src="js/html5-qrcode.min.js"></script>
 <style>
@@ -61,10 +65,12 @@
 								</div>
 						<!-- <br />
 						<br /> -->
-								<div class="col-lg-2" style="margin-top:3px!important;margin-left:0px!important;">
+								<div class="col-lg-1" style="margin-top:3px!important;margin-left:0px!important;">
 									<button name="submit" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Submit</button>
 								</div>
-								<div class="col-lg-3"></div>
+								<div class="col-lg-2" style="margin-top:3px!important;margin-left:0px!important;">
+									<a href="borrowqr_scanner.php" class="btn btn-primary"><i class="fa fa-camera"></i> Borrow QR Scanner</a>
+								</div>
 						</form>
 
 <?php
@@ -104,7 +110,7 @@
 							}
 							
 
-							$return_query= mysqli_query($con,"SELECT borrow_book.borrow_book_id,borrow_book.user_id,borrow_book.book_id,borrow_book.book_penalty,borrow_book.due_date,borrow_book.date_borrowed,borrow_book.status,book.book_barcode,book.book_title,user.firstname,user.lastname,borrow_book.pickup_date,borrow_book.borrowed_status from borrow_book 
+							$return_query= mysqli_query($con,"SELECT borrow_book.borrow_book_id,borrow_book.borrowed_status,borrow_book.user_id,borrow_book.book_id,borrow_book.book_penalty,borrow_book.due_date,borrow_book.date_borrowed,borrow_book.status,book.book_barcode,book.book_title,user.firstname,user.lastname,user.email,borrow_book.pickup_date,borrow_book.borrowed_status from borrow_book 
 							LEFT JOIN book ON borrow_book.book_id = book.book_id 
 							LEFT JOIN user ON borrow_book.user_id = user.user_id 
 							where (borrow_book.borrowed_status = 'borrowed' OR borrow_book.borrowed_status = 'borrow' OR borrow_book.borrowed_status = 'reserve')  $where order by borrow_book.date_borrowed DESC") or die (mysqli_error());
@@ -128,6 +134,7 @@
 									<th>Date Borrowed</th>
 									<th>Due Date</th>
 									<th>Pickup Date</th>
+									<th>Status</th>
 									<th>Action</th>
 									<!-- <th>Date Returned</th> -->
 									<!-- <th>Penalty</th> -->
@@ -167,6 +174,9 @@
 								?>
 								<td><?php $timestamp = strtotime($return_row['pickup_date']); echo ($return_row['pickup_date']!='') ? date("M d, Y h:m:s a", $timestamp) : '' ?></td>
 								<td>
+									<?php echo ($return_row['borrowed_status']=='borrowed') ? 'Borrowed' : 'Reserve'?>
+								</td>
+								<td>
 								<?php
 								$allowable_days_query= mysqli_query($con,"select * from allowed_days order by allowed_days_id DESC ") or die (mysqli_error());
 								$allowable_days_row = mysqli_fetch_assoc($allowable_days_query);
@@ -180,14 +190,18 @@
 								$due_date = date('Y-m-d H:i:s', $due_date);
 								///$checkout = date('m/d/Y', strtotime("+1 day", strtotime($due_date)));
 								?>
-									<?php if($return_row['status']==0){?>
+									<?php 
+										if($return_row['status']==0 && $return_row['borrowed_status']!='borrowed'){
+											$btnName = 'accept_'.$return_row['user_id'];
+											$btnName1 = 'decline_'.$return_row['user_id'];
+									?>
 									<form method="POST" action="">	
-										<button name="accepted" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Accept</button>
-										<button name="declined" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Decline</button>
+										<button name="<?php echo $btnName; ?>" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Accept</button>
+										<button name="<?php echo $btnName1; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Decline</button>
 											<input type="hidden" name="due_date" class="new_text" id="due_date" value="<?php echo $due_date ?>" size="16" maxlength="10"  />
 											<input type="hidden" name="date_borrowed" class="new_text" id="date_borrowed" value="<?php echo $date_borrowed ?>" size="16" maxlength="10"  />
 											<?php 
-												if (isset($_POST['accepted'])){
+												if (isset($_POST[$btnName])){
 													$date_borrowed =$_POST['date_borrowed'];
 													$due_date =$_POST['due_date'];
 													
@@ -247,6 +261,29 @@
 															mysqli_query($con,"INSERT INTO notifications 
 															(user_id, message, status)
 															VALUES ('$user_id','The admin has accepted your request to reserve ".$copies_row['book_title']."','unread')") or die(mysqli_error());
+
+															$sql_user = mysqli_query($con,"SELECT * FROM user WHERE user_id = '$user_id'");
+															$row_user = mysqli_fetch_array($sql_user);
+															$mail = new PHPMailer(true);
+															try {
+																$mail->isSMTP();
+																$mail->Host = 'smtp.gmail.com';
+																$mail->SMTPAuth = true;
+																$mail->Username = 'pallorinapopo@gmail.com';
+																$mail->Password = 'rojqgkprfgsbguxc';
+																$mail->SMTPSecure = 'tls';
+																$mail->Port = 587;
+
+																$mail->setFrom($row_user['email'], 'Librarian');
+																$mail->addAddress($row_user['email']);
+																$mail->Subject = 'Borrow Book Accepted';
+																$mail->Body    = 'The librarian has accepted your request to borrow "'.$copies_row['book_title'].'"';
+
+																$mail->send();
+																echo 'Email sent successfully!';
+															} catch (Exception $e) {
+																echo "Email could not be sent. Mailer Error: {$mail->ErrorInfo}";
+															}
 														}
 													}
 											?>
@@ -255,8 +292,30 @@
 												// window.location="borrowed.php";
 											</script>
 											<?php } 
-												if (isset($_POST['declined'])){
+												if (isset($_POST[$btnName1])){
 													mysqli_query($con,"UPDATE borrow_book SET borrowed_status = 'declined', status='2' where borrow_book_id = '$id' ") or die (mysqli_error());
+													mysqli_query($con,"INSERT INTO notifications 
+													(user_id, message, status) VALUES ('$user_id','The admin has declined your request to reserve ".$copies_row['book_title']."','unread')") or die(mysqli_error());
+													$mail = new PHPMailer(true);
+													try {
+														$mail->isSMTP();
+														$mail->Host = 'smtp.gmail.com';
+														$mail->SMTPAuth = true;
+														$mail->Username = 'pallorinapopo@gmail.com';
+														$mail->Password = 'rojqgkprfgsbguxc';
+														$mail->SMTPSecure = 'tls';
+														$mail->Port = 587;
+
+														$mail->setFrom($return_query['email'], 'Librarian');
+														$mail->addAddress($return_query['email']);
+														$mail->Subject = 'Borrow Book Declined';
+														$mail->Body    = 'The librarian has declined your request to borrow "'.$copies_row['book_title'].'"';
+
+														$mail->send();
+														echo 'Email sent successfully!';
+													} catch (Exception $e) {
+														echo "Email could not be sent. Mailer Error: {$mail->ErrorInfo}";
+													}
 											?>
 											<script>
 												window.location="borrow.php";
@@ -288,10 +347,12 @@
 											</div>
 										</div> -->
 										<form method="POST" action="">
-											<?php if($return_row['borrowed_status']!='borrowed'){ ?>
-												<button name="borrow" class="btn btn-info">Borrow</button>
+											<?php if($return_row['borrowed_status']!='borrowed'){ 
+												$btnName2 = 'borrow_'.$return_row['user_id'];	
+											?>
+												<button name="<?php echo $btnName2?>" class="btn btn-info">Borrow</button>
 											<?php 
-												if (isset($_POST['borrow'])){ 
+												if (isset($_POST[$btnName2])){ 
 													$trapBookCount= mysqli_query($con,"SELECT count(*) as books_allowed from borrow_book where user_id = '$user_id' and borrowed_status = 'borrowed'") or die (mysqli_error());
 
 													$countBorrowed = mysqli_fetch_assoc($trapBookCount);
@@ -356,6 +417,11 @@
 															mysqli_query($con,"INSERT INTO notifications 
 															(user_id, message, status)
 															VALUES ('$user_id','The admin has accepted your request to borrow ".$copies_row['book_title']."','unread')") or die(mysqli_error());
+															?>
+															<script>
+																window.location="borrow.php";
+															</script>
+															<?php
 														}
 													}
 												} 
@@ -375,7 +441,7 @@
 								echo '
 									<table style="float:right;">
 										<tr>
-											<td style="padding:10px;" class="alert alert-danger">No Books returned at this moment</td>
+											<td style="padding:10px;" class="alert alert-danger">No Books borrowed at this moment</td>
 										</tr>
 									</table>
 								';

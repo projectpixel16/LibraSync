@@ -24,7 +24,7 @@
  
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" style="background: #2c93fd7d;">
                     <div class="x_title">
                         <h2><i class="fa fa-plus"></i> Add Book</h2>
                         <ul class="nav navbar-right panel_toolbox">
@@ -47,7 +47,7 @@
                     <div class="x_content">
                         <!-- content starts here -->
 
-                            <form method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                            <form method="post" enctype="multipart/form-data" class="form-horizontal form-label-left" onsubmit="return confirmSave('book');">
 							<input type="hidden" name="new_barcode" value="<?php echo $new_barcode; ?>">
 							
                                 <div class="form-group">
@@ -165,7 +165,7 @@
                                 </div> -->
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
                                         <a href="book.php"><button type="button" class="btn btn-primary"><i class="fa fa-times-circle-o"></i> Cancel</button></a>
                                         <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-plus-square"></i> Submit</button>
                                     </div>

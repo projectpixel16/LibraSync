@@ -114,7 +114,7 @@
 							<?php
 							$result= mysqli_query($con,"select * from report 
 							INNER JOIN book ON report.book_id = book.book_id 
-							INNER JOIN user ON report.user_id = user.user_id 
+							INNER JOIN user ON report.user_id = user.user_id INNER JOIN schools ON user.school_id = schools.school_id 
 							order by report.report_id DESC ") or die (mysqli_error());
 							while ($row= mysqli_fetch_array ($result) ){
 							$id=$row['report_id'];

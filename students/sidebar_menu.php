@@ -42,9 +42,9 @@
                             <h3 style="margin-top:85px;">Transaction Information</h3>
 							<div class="separator"></div>
                             <ul class="nav side-menu">
-                                <li>
+                                <!-- <li>
 									<a href="book.php"><i class="fa fa-book"></i> Books</a>
-                                </li>
+                                </li> -->
                                 <!-- <li>
 									<a href="borrow_book.php?school_number=<?php echo $row['school_number']?>"><i class="fa fa-edit"></i> Borrow</a>
                                 </li> -->

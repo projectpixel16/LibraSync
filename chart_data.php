@@ -5,7 +5,8 @@
 
     $data = [];
     while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
+        // $data[] = $row;
+        'labels' => $months,
     }
 
     echo json_encode($data);

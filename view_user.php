@@ -44,8 +44,8 @@
 								
 							<thead>
 								<tr>
-							<!---		<th>User Image</th>	-->
-									<th>studentFull Name</th>
+							-		<th>ID Image</th>	
+									<th>Fullname</th>
 									<th>Contact</th>
 									<th>Gender</th>
 									<th>Address</th>
@@ -64,13 +64,13 @@
 		while($row = mysqli_fetch_array($result1)){
 		?>
 							<tr>
-						<!---		<td>
-								<?php // if($row['user_image'] != ""): ?>
-								<img src="upload/<?php // echo $row['user_image']; ?>" width="100px" height="100px" style="border:4px groove #CCCCCC; border-radius:5px;">
-								<?php // else: ?>
-								<img src="images/user.png" width="100px" height="100px" style="border:4px groove #CCCCCC; border-radius:5px;">
-								<?php // endif; ?>
-								</td> -->
+								<td align="center">
+									<?php if($row['id_image'] != ""): ?>
+									<img src="upload/<?php echo $row['id_image']; ?>" width="100px" height="100px" style="border:4px groove #CCCCCC; border-radius:5px;">
+									<?php else: ?>
+									<img src="images/user.png" width="100px" height="100px" style="border:4px groove #CCCCCC; border-radius:5px;">
+									<?php endif; ?>
+								</td>
 								<td><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></td> 
 								<td><?php echo $row['contact']; ?></td> 
 								<td><?php echo $row['gender']; ?></td> 

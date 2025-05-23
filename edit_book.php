@@ -14,7 +14,7 @@ $ID=$_GET['book_id'];
  
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" style="background: #2c93fd7d;">
                     <div class="x_title">
                         <h2><i class="fa fa-pencil"></i> Edit Book</h2>
                         <ul class="nav navbar-right panel_toolbox">
@@ -43,7 +43,7 @@ $ID=$_GET['book_id'];
 $row=mysqli_fetch_assoc($query1);
   ?>
 
-                            <form method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                            <form method="post" enctype="multipart/form-data" class="form-horizontal form-label-left" onsubmit="return confirmSave('book');">>
                                 <!-- <div class="form-group">
                                     <label class="control-label col-md-4" for="last-name">Book Image
                                     </label>
@@ -167,7 +167,7 @@ $row=mysqli_fetch_assoc($query1);
                                 </div>
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
                                         <a href="book.php"><button type="button" class="btn btn-primary"><i class="fa fa-times-circle-o"></i> Cancel</button></a>
                                         <button type="submit" name="update11" class="btn btn-success"><i class="glyphicon glyphicon-save"></i> Update</button>
                                     </div>

@@ -66,14 +66,14 @@ function printPage() {
 				<center><h5 style = "font-style:Calibri; margin-top:-14px;"></h5> Rafael M. Salas Memorial Library</center>
 			
 <button type="submit" id="print" onclick="printPage()">Print</button>	
-			<p style = "margin-left:3px; margin-top:50px; font-size:14pt; font-weight:bold;">Student QR Individual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			<p style = "margin-left:3px; margin-top:50px; font-size:14pt; font-weight:bold;">User QR Individual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <div align="right">
 		<b style="color:blue;">Date Prepared:</b>
 		<?php include('currentdate.php'); ?>
         </div>			
 		<br/>
 		<br/>
-		<div>
+		<div align='center'>
 			<img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=<?php echo $code1; ?>" alt="QR Code">
 			<!-- <?php echo "<img src = 'BCG/html/image.php?filetype=PNG&dpi=72&scale=1&rotation=0&font_family=Arial.ttf&font_size=10&text=".$code1."&thickness=50&start=NULL&code=BCGcode128' />";?> -->
 			<h3><?php echo $code2; ?></h3>

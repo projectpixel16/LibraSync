@@ -421,6 +421,12 @@
                 }
             });
         });
+        function confirmSave(page) {
+            return confirm("Are you sure you want to save this "+page+"?");
+        }
+        function confirmUpdate(page) {
+            return confirm("Are you sure you want to update this "+page+"?");
+        }
     </script>
     <!-- /knob -->	
 	<?php include ('scripts.php'); ?>

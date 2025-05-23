@@ -62,12 +62,12 @@
 								
 							<thead>
 								<tr>
-									<th style="width:100px;">Book Image</th>
+									<!-- <th style="width:100px;">Book Image</th> -->
 									<th>Barcode</th>
 									<th>Title</th>
 									<th>ISBN</th>
 									<th>Author/s</th>
-									<th>Copies</th>
+									<th>Quantity</th>
 									<th>Category</th>
 									<th>Status</th>
 									<th>Remarks</th>
@@ -78,7 +78,7 @@
 							<tbody>
 							
 							<?php
-							$result= mysqli_query($con,"select * from book where status = 'Replacement' ") or die (mysqli_error());
+							$result= mysqli_query($con,"select * from book where status = 'Replacement' AND archive=0") or die (mysqli_error());
 							while ($row= mysqli_fetch_array ($result) ){
 							$id=$row['book_id'];
 							$category_id=$row['category_id'];
@@ -87,13 +87,14 @@
 							$cat_row = mysqli_fetch_array($cat_query);
 							?>
 							<tr>
-								<td>
+								<!-- <td>
 								<?php if($row['book_image'] != ""): ?>
 								<img src="upload/<?php echo $row['book_image']; ?>" class="img-thumbnail" width="75px" height="50px">
 								<?php else: ?>
 								<img src="images/book_image.jpg" class="img-thumbnail" width="75px" height="50px">
 								<?php endif; ?>
-								</td>  <!--- either this <td><a target="_blank" href="view_book_barcode.php?code=<?php // echo $row['book_barcode']; ?>"><?php // echo $row['book_barcode']; ?></a></td> -->
+								</td>   -->
+								<!--- either this <td><a target="_blank" href="view_book_barcode.php?code=<?php // echo $row['book_barcode']; ?>"><?php // echo $row['book_barcode']; ?></a></td> -->
 								<td><a target="_blank" href="print_barcode_individual1.php?code=<?php echo $row['book_barcode']; ?>"><?php echo $row['book_barcode']; ?></a></td>
 								<td style="word-wrap: break-word; width: 10em;"><?php echo $row['book_title']; ?></td>
 								<td style="word-wrap: break-word; width: 10em;"><?php echo $row['isbn']; ?></td>

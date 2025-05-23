@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home / Admin Profile</small> / View Individual
+					<small>Home / Librarian Profile</small> / View Individual
                 </h3>
             </div>
         </div>

@@ -97,6 +97,9 @@
 									<a class="btn btn-primary" title="View" for="ViewAdmin" href="view_user.php<?php echo '?user_id='.$id; ?>">
 										<i class="fa fa-search"></i>
 									</a>
+									<a title="Unarchive" class="btn btn-success" for="DeleteAdmin" href="#delete<?php echo $id;?>" data-toggle="modal" data-target="#delete<?php echo $id;?>">
+										<i class="glyphicon glyphicon-upload icon-white"></i>
+									</a>
 									<!-- <a class="btn btn-warning" title="Edit" for="ViewAdmin" href="edit_user.php<?php echo '?user_id='.$id; ?>">
 									<i class="fa fa-edit"></i>
 									</a> -->
@@ -113,11 +116,11 @@
 										</div>
 										<div class="modal-body">
 												<div class="alert alert-danger">
-													Are you sure you want to archive this student?
+													Are you sure you want to unarchive this student?
 												</div>
 												<div class="modal-footer">
 												<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove icon-white"></i> No</button>
-												<a href="delete_user.php<?php echo '?user_id='.$id; ?>" style="margin-bottom:5px;" class="btn btn-primary"><i class="glyphicon glyphicon-ok icon-white"></i> Yes</a>
+												<a href="delete_user1.php<?php echo '?user_id='.$id; ?>" style="margin-bottom:5px;" class="btn btn-primary"><i class="glyphicon glyphicon-ok icon-white"></i> Yes</a>
 												</div>
 										</div>
 										</div>

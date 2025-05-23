@@ -17,9 +17,9 @@
  
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" style="background: #2c93fd7d;">
                     <div class="x_title">
-                        <h2><i class="fa fa-camera"></i> Reserved QR Scanner</h2>
+                        <h2><i class="fa fa-camera"></i> Reserve QR Scanner</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <!-- If needed 
@@ -128,7 +128,12 @@
 				let scanner = new Html5Qrcode("reader");
 				scanner.start(
 					cameraId,
-					{ fps: 10, qrbox: { width: 250, height: 250 } },
+					{ fps: 10, qrbox: { width: 250, height: 250 },formatsToSupport: [
+                        Html5QrcodeSupportedFormats.CODE_128,
+                        Html5QrcodeSupportedFormats.EAN_13,
+                        Html5QrcodeSupportedFormats.UPC_A,
+                        Html5QrcodeSupportedFormats.CODE_39
+                    ] },
 					onScanSuccess
 				).catch(err => console.log("Scanner Error: ", err));
 			} else {

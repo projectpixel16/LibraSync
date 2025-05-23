@@ -62,7 +62,7 @@ function printPage() {
 				<center><h5 style = "font-style:Calibri; margin-top:-14px;"></h5> &nbsp; &nbsp;   LibraSync</center>
 				<center><h5 style = "font-style:Calibri; margin-top:-14px;"></h5> Rafael M. Salas Memorial Library</center>
 			<button type="submit" id="print" onclick="printPage()">Print</button>	
-			<p style = "margin-left:30px; margin-top:50px; font-size:14pt; font-weight:bold;">studentList&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			<p style = "margin-left:30px; margin-top:50px; font-size:14pt; font-weight:bold;">Users List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <div align="right">
 		<b style="color:blue;">Date Prepared:</b>
 		<?php include('currentdate.php'); ?>
@@ -76,7 +76,7 @@ function printPage() {
 						  <thead>
 								<tr>
 								<tr>
-									<th>User Name</th>
+									<th>Fullname</th>
 									<th>Email Address</th>
 									<th>Contact</th>
 									<th>Gender</th>

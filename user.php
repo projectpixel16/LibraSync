@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-					<small>Home /</small> Students
+					<small>Home /</small> Users
                 </h3>
             </div>
         </div>
@@ -13,24 +13,24 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
 							<a href="member_print.php" target="_blank" style="background:none;">
-							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Students List</button>
+							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Users List</button>
 							</a>
 							<a href="print_barcode.php" target="_blank" style="background:none;">
-							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Students QR Code</button>
+							<button class="btn btn-danger pull-right"><i class="fa fa-print"></i> Print Users QR Code</button>
 							</a>
 							<br />
 							<br />
                     <div class="x_title">
-                        <h2><i class="fa fa-users"></i> Students Information</h2>
+                        <h2><i class="fa fa-users"></i> Users Information</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
 							<a href="add_user.php" style="background:none;">
-							<button class="btn btn-primary btn-outline"><i class="fa fa-plus"></i> Add Student</button>
+							<button class="btn btn-primary btn-outline"><i class="fa fa-plus"></i> Add User</button>
 							</a>
 							</li>
                             <li>
 							<a href="import_students.php" style="background:none;">
-							<button class="btn btn-success btn-outline"><i class="fa fa-upload"></i> Import Students</button>
+							<button class="btn btn-success btn-outline"><i class="fa fa-upload"></i> Import Users</button>
 							</a>
 							</li>
                         <!---    <li>
@@ -64,7 +64,7 @@
 								<tr>
 							<!---		<th>Image</th>	-->
 									<th>School ID</th>
-									<th>Student Full Name</th>
+									<th>Full Name</th>
 									<th>Contact No.</th>
 									<th>Email Address</th>
 									<th>Gender</th>
