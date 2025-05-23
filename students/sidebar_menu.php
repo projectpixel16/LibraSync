@@ -2,7 +2,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
 
-                    <div class="navbar nav_title" style="border: 0;">
+                    <div class="navbar nav_title" id="student" style="border: 0;">
                         <a href="home.php" class="site_title">
                         <img src="../images/logo.jpg" alt="" style="width: 50px;">    
                         <span>LibraSync</span></a>
